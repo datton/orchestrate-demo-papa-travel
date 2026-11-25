@@ -15,12 +15,12 @@
 .h-hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:6rem var(--gutter) 4rem;background:radial-gradient(48rem 24rem at 95% 8%,color-mix(in srgb,var(--sun) 55%,transparent),transparent 70%),radial-gradient(40rem 22rem at 0% 100%,color-mix(in srgb,var(--ocean) 28%,transparent),transparent 70%),var(--bg)}
 .h-hero h1{font-family:var(--font-display);font-size:min(var(--fs-h1),11.2vw);overflow-wrap:break-word;line-height:var(--lh-tight);letter-spacing:var(--track-display);margin:0 0 1.5rem;max-width:14ch}
 .h-hero .lead{font-size:var(--fs-lg);max-width:56ch;margin:0 0 2rem}
-.kin{background:linear-gradient(90deg,var(--accent),#e3560a,#b57a00,var(--accent));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:h-sweep 7s linear infinite}
+.kin{background:linear-gradient(90deg,#19e3c9,#6aa5ff,#ff5fa8,#6aa5ff,#19e3c9);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:h-sweep 7s linear infinite}
 @keyframes h-sweep{to{background-position:-200% 0}}
-.h-tag{display:inline-block;align-self:flex-start;padding:.3rem .9rem;border:var(--border);border-radius:var(--radius-pill);background:var(--sun);color:var(--text);font-weight:800;font-size:.85rem;margin-bottom:1.2rem;box-shadow:var(--shadow-sm)}
+.h-tag{display:inline-block;align-self:flex-start;padding:.3rem .9rem;border:var(--border);border-radius:var(--radius-pill);background:var(--sun);color:var(--on-accent);font-weight:800;font-size:.85rem;margin-bottom:1.2rem;box-shadow:var(--shadow-sm)}
 .h-btn{display:inline-flex;align-items:center;min-height:48px;padding:.75rem 1.6rem;border:var(--border);border-radius:var(--radius-pill);background:var(--accent);color:var(--on-accent);font:inherit;font-weight:800;text-decoration:none;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
 .h-btn:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow)}
-.h-btn--ghost{background:var(--surface);color:var(--text);margin-left:.75rem}
+.h-btn.h-btn--ghost{background:var(--surface-2);color:#fff;border-color:var(--accent);margin-left:.75rem}
 .h-big{font-family:var(--font-display);font-size:var(--fs-h2);line-height:var(--lh-tight);letter-spacing:var(--track-h2);margin:0 0 1.5rem;max-width:20ch}
 .h-marq{overflow:hidden;white-space:nowrap}.h-marq span{display:inline-block;font-family:var(--font-display);font-size:var(--fs-giant);font-weight:800;letter-spacing:var(--track-display);padding-right:2rem;background:var(--gradient-text-dark);-webkit-background-clip:text;background-clip:text;color:transparent}
 .h-state{font-family:var(--font-display);font-size:clamp(1.8rem,4.4vw,3.4rem);line-height:var(--lh-snug);max-width:28ch;margin:0}
