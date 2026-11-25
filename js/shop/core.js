@@ -92,6 +92,19 @@
     var c = lastCat && (lastCat.coupons || []).filter(function (x) { return x.code === code; })[0];
     return c ? tx(c, 'name') : fb;
   }
+  // The service's German summary text (e.g. 'Doppelzimmer, geteilt · 2 Nächte') in the visitor's language: every
+  // option choice name found in it is replaced by the catalog's text. Use it where a line has no 'options' object.
+  function localizeSummary(text) {
+    if (!text || LANG === 'de' || !lastCat || !lastCat.options) return text;
+    var out = String(text);
+    Object.keys(lastCat.options).forEach(function (g) {
+      ((lastCat.options[g] || {}).choices || []).forEach(function (c) {
+        var l = tx(c, 'name');
+        if (c.name && l && l !== c.name && out.indexOf(c.name) >= 0) out = out.split(c.name).join(l);
+      });
+    });
+    return out;
+  }
   // Option summary for a cart line ({item, options: {group: choiceId}}) in the visitor's language, or fb.
   function lineSummary(line, fb) {
     var o = line && line.options, parts = [];
@@ -198,7 +211,7 @@
     cart: cart, saveCart: saveCart, addToCart: addToCart, cartCount: cartCount,
     orders: orders, addOrder: addOrder, owns: owns, owned: owned,
     openCart: function () { window.dispatchEvent(new Event('shop:cart-open')); },
-    LANG: LANG, t: t, tx: tx, itemName: itemName, choiceName: choiceName, groupName: groupName, couponName: couponName, lineSummary: lineSummary,
+    LANG: LANG, t: t, tx: tx, itemName: itemName, choiceName: choiceName, groupName: groupName, couponName: couponName, lineSummary: lineSummary, localizeSummary: localizeSummary,
     TEST_LABEL: t({
       de: 'Demo-Shop: nur Testzahlungen, es bewegt sich kein echtes Geld.',
       en: 'Demo shop: test payments only. No real money moves.',
