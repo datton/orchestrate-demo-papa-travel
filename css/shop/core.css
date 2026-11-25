@@ -23,7 +23,7 @@
 .shop-field input, .shop-field select, .shop-field textarea { max-width: 100%; }
 .shop-field label { font-weight: 600; font-size: .95rem; }
 .shop-field input, .shop-field select, .shop-field textarea {
-  font: inherit; padding: .75rem 1rem; border-radius: 12px; border: 1.5px solid rgba(127,127,127,.5); background: var(--surface, #fff); color: inherit; min-height: 44px;
+  font: inherit; padding: .75rem 1rem; border-radius: 12px; border: 1.5px solid var(--field-line, rgba(127,127,127,.5)); background: var(--surface, #fff); color: inherit; min-height: 44px;
 }
 .shop-field input:focus-visible, .shop-field select:focus-visible, .shop-field textarea:focus-visible { outline: 3px solid var(--focus, #1a56db); outline-offset: 1px; }
 .shop-field .shop-error { color: var(--danger, #b00020); font-size: .9rem; }
@@ -41,7 +41,7 @@
   .shop-sheet.is-open { transform: none; }
 }
 
-.shop-stepper { display: inline-flex; align-items: center; gap: .25rem; border: 1.5px solid rgba(127,127,127,.5); border-radius: 999px; }
+.shop-stepper { display: inline-flex; align-items: center; gap: .25rem; border: 1.5px solid var(--field-line, rgba(127,127,127,.5)); border-radius: 999px; }
 .shop-stepper button { width: 44px; height: 44px; border: 0; background: transparent; color: inherit; font-size: 1.3rem; cursor: pointer; border-radius: 50%; }
 .shop-stepper output { min-width: 2ch; text-align: center; font-weight: 600; }
 
