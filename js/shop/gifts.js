@@ -10,7 +10,7 @@
   function cardHtml(g, opts) {
     opts = opts || {};
     var d = designOf(g.design);
-    return '<div class="gf-face gf-face--' + esc(g.design || 'x') + '"><p class="gf-face__brand">Papa Travel <span>Demo</span></p>' +
+    return '<div class="gf-face gf-face--' + esc(g.design || 'x') + '"><p class="gf-face__brand">Ghana Vorab <span>Demo</span></p>' +
       '<p class="gf-face__amount">' + (opts.amountText || money(g.amount || 0)) + '</p>' +
       '<p class="gf-face__design">' + esc(d ? d.name : '') + (d && d.line ? ': ' + esc(d.line) : '') + '</p>' +
       '<p class="gf-face__who">' + (g.to ? 'Für ' + esc(g.to) : '') + (g.from ? ' · von ' + esc(g.from) : '') + '</p>' +
@@ -123,7 +123,7 @@
     });
   }
   function cardText(code, g, link) {
-    return ['Papa Travel: Reiseguthaben (Demo, fiktive Agentur)', '', 'Code: ' + code, 'Guthaben: ' + money(g.balance != null ? g.balance : g.amount),
+    return ['Ghana Vorab: Reiseguthaben (Demo, fiktive Agentur)', '', 'Code: ' + code, 'Guthaben: ' + money(g.balance != null ? g.balance : g.amount),
       g.to ? 'Für: ' + g.to : '', g.from ? 'Von: ' + g.from : '', g.message ? 'Nachricht: ' + g.message : '', '', 'Einlösen: Code an der Kasse eingeben. Was nicht gebraucht wird, bleibt auf dem Code.',
       'Prüfen: ' + link, '', S.TEST_LABEL].filter(function (x, i) { return x !== '' || i; }).join('\n');
   }
