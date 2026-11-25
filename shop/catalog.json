@@ -13,17 +13,47 @@
   {
    "id": "packages",
    "name": "Pakete",
-   "blurb": "Fertig geplant: Unterkunft, Abholung und Reiseplan in einem Preis"
+   "blurb": "Fertig geplant: Unterkunft, Abholung und Reiseplan in einem Preis",
+   "i18n": {
+    "en": {
+     "name": "Packages",
+     "blurb": "Ready planned: lodging, pick-up and a travel plan in one price"
+    },
+    "fr": {
+     "name": "Forfaits",
+     "blurb": "Tout est planifié : hébergement, accueil et programme de voyage pour un seul prix"
+    }
+   }
   },
   {
    "id": "services",
    "name": "Services",
-   "blurb": "Einzeln buchbar: Transfer, Reiseplanung und Unterlagen-Check"
+   "blurb": "Einzeln buchbar: Transfer, Reiseplanung und Unterlagen-Check",
+   "i18n": {
+    "en": {
+     "name": "Services",
+     "blurb": "Book one at a time: transfer, trip planning and document check"
+    },
+    "fr": {
+     "name": "Services",
+     "blurb": "À la carte : transfert, préparation du voyage et vérification des documents"
+    }
+   }
   },
   {
    "id": "guides",
    "name": "Ratgeber",
-   "blurb": "Zum Nachlesen, freigeschaltet unter Meine Käufe"
+   "blurb": "Zum Nachlesen, freigeschaltet unter Meine Käufe",
+   "i18n": {
+    "en": {
+     "name": "Guides",
+     "blurb": "To read at your own pace, unlocked under My purchases"
+    },
+    "fr": {
+     "name": "Guides",
+     "blurb": "À lire à votre rythme, débloqués dans Mes achats"
+    }
+   }
   }
  ],
  "options": {
@@ -36,14 +66,38 @@
      "id": "doppel",
      "name": "Doppelzimmer, geteilt",
      "price": 0,
-     "default": true
+     "default": true,
+     "i18n": {
+      "en": {
+       "name": "Double room, shared"
+      },
+      "fr": {
+       "name": "Chambre double, partagée"
+      }
+     }
     },
     {
      "id": "einzel",
      "name": "Einzelzimmer",
-     "price": 9000
+     "price": 9000,
+     "i18n": {
+      "en": {
+       "name": "Single room"
+      },
+      "fr": {
+       "name": "Chambre individuelle"
+      }
+     }
     }
-   ]
+   ],
+   "i18n": {
+    "en": {
+     "name": "Room"
+    },
+    "fr": {
+     "name": "Chambre"
+    }
+   }
   },
   "gaeste_transfer": {
    "name": "Gäste",
@@ -54,14 +108,38 @@
      "id": "1-2",
      "name": "1 bis 2 Personen",
      "price": 0,
-     "default": true
+     "default": true,
+     "i18n": {
+      "en": {
+       "name": "1 to 2 people"
+      },
+      "fr": {
+       "name": "1 à 2 personnes"
+      }
+     }
     },
     {
      "id": "3-4",
      "name": "3 bis 4 Personen",
-     "price": 1500
+     "price": 1500,
+     "i18n": {
+      "en": {
+       "name": "3 to 4 people"
+      },
+      "fr": {
+       "name": "3 à 4 personnes"
+      }
+     }
     }
-   ]
+   ],
+   "i18n": {
+    "en": {
+     "name": "Guests"
+    },
+    "fr": {
+     "name": "Voyageurs"
+    }
+   }
   },
   "richtung": {
    "name": "Fahrt",
@@ -72,14 +150,38 @@
      "id": "einfach",
      "name": "Einfache Fahrt",
      "price": 0,
-     "default": true
+     "default": true,
+     "i18n": {
+      "en": {
+       "name": "One way"
+      },
+      "fr": {
+       "name": "Aller simple"
+      }
+     }
     },
     {
      "id": "hin-zurueck",
      "name": "Hin und zurück",
-     "price": 4000
+     "price": 4000,
+     "i18n": {
+      "en": {
+       "name": "Round trip"
+      },
+      "fr": {
+       "name": "Aller-retour"
+      }
+     }
     }
-   ]
+   ],
+   "i18n": {
+    "en": {
+     "name": "Trip"
+    },
+    "fr": {
+     "name": "Trajet"
+    }
+   }
   },
   "tempo": {
    "name": "Bearbeitung",
@@ -90,14 +192,38 @@
      "id": "standard",
      "name": "Standard: Antwort in 3 Werktagen",
      "price": 0,
-     "default": true
+     "default": true,
+     "i18n": {
+      "en": {
+       "name": "Standard: reply in 3 working days"
+      },
+      "fr": {
+       "name": "Standard : réponse sous 3 jours ouvrés"
+      }
+     }
     },
     {
      "id": "express",
      "name": "Express: Antwort in 1 Werktag",
-     "price": 1500
+     "price": 1500,
+     "i18n": {
+      "en": {
+       "name": "Express: reply in 1 working day"
+      },
+      "fr": {
+       "name": "Express : réponse sous 1 jour ouvré"
+      }
+     }
     }
-   ]
+   ],
+   "i18n": {
+    "en": {
+     "name": "Processing"
+    },
+    "fr": {
+     "name": "Traitement"
+    }
+   }
   }
  },
  "items": [
@@ -118,7 +244,29 @@
    "tags": [],
    "soldOut": false,
    "badge": "Einstieg",
-   "perPerson": true
+   "perPerson": true,
+   "i18n": {
+    "en": {
+     "name": "Ghana Start",
+     "badge": "Starter",
+     "desc": "Six nights in Accra with airport pick-up and a written travel plan. The compact way in. Price per person. Fictional demo offer.",
+     "includes": [
+      "6 nights of lodging in Accra",
+      "Pick-up at the airport",
+      "Travel plan as text to save"
+     ]
+    },
+    "fr": {
+     "name": "Ghana Start",
+     "badge": "Entrée en matière",
+     "desc": "Six nuits à Accra avec accueil à l'aéroport et un programme de voyage écrit. L'entrée en matière compacte. Prix par personne. Offre de démonstration fictive.",
+     "includes": [
+      "6 nuits d'hébergement à Accra",
+      "Accueil à l'aéroport",
+      "Programme de voyage en texte à enregistrer"
+     ]
+    }
+   }
   },
   {
    "id": "ghana-rundreise",
@@ -140,7 +288,31 @@
    ],
    "soldOut": false,
    "perPerson": true,
-   "badge": "Beliebt"
+   "badge": "Beliebt",
+   "i18n": {
+    "en": {
+     "name": "Ghana Round Trip",
+     "badge": "Popular",
+     "desc": "Nine nights in several places, with transfers between stops and a travel plan for each leg. Price per person. Fictional demo offer.",
+     "includes": [
+      "9 nights of lodging",
+      "Transfers between stops",
+      "Travel plan for each leg",
+      "Preparation checklist"
+     ]
+    },
+    "fr": {
+     "name": "Ghana Circuit",
+     "badge": "Populaire",
+     "desc": "Neuf nuits en plusieurs lieux, avec les transferts entre les étapes et un programme pour chaque étape. Prix par personne. Offre de démonstration fictive.",
+     "includes": [
+      "9 nuits d’hébergement",
+      "Transferts entre les étapes",
+      "Programme pour chaque étape",
+      "Liste de préparation"
+     ]
+    }
+   }
   },
   {
    "id": "ghana-gemeinsam",
@@ -158,7 +330,27 @@
    ],
    "tags": [],
    "soldOut": false,
-   "perPerson": true
+   "perPerson": true,
+   "i18n": {
+    "en": {
+     "name": "Ghana Together",
+     "desc": "For two or more: seven nights, one shared transfer and a travel plan for the group. Price per person. Fictional demo offer.",
+     "includes": [
+      "7 nights of lodging",
+      "Shared transfer",
+      "Travel plan for the group"
+     ]
+    },
+    "fr": {
+     "name": "Ghana à plusieurs",
+     "desc": "Pour deux personnes ou plus : sept nuits, un transfert commun et un programme pour le groupe. Prix par personne. Offre de démonstration fictive.",
+     "includes": [
+      "7 nuits d’hébergement",
+      "Transfert commun",
+      "Programme pour le groupe"
+     ]
+    }
+   }
   },
   {
    "id": "abholung-accra",
@@ -175,7 +367,25 @@
     "Fahrt zur Unterkunft"
    ],
    "tags": [],
-   "soldOut": false
+   "soldOut": false,
+   "i18n": {
+    "en": {
+     "name": "Pick-up in Accra",
+     "desc": "We take you from Accra airport to your lodging. Fictional demo offer.",
+     "includes": [
+      "Pick-up at the airport",
+      "Ride to your lodging"
+     ]
+    },
+    "fr": {
+     "name": "Accueil à Accra",
+     "desc": "Nous vous conduisons de l'aéroport d'Accra à votre hébergement. Offre de démonstration fictive.",
+     "includes": [
+      "Accueil à l'aéroport",
+      "Trajet jusqu’à l’hébergement"
+     ]
+    }
+   }
   },
   {
    "id": "reiseplanung",
@@ -191,7 +401,25 @@
     "Eine Runde Änderungen"
    ],
    "tags": [],
-   "soldOut": false
+   "soldOut": false,
+   "i18n": {
+    "en": {
+     "name": "Trip planning",
+     "desc": "Your wishes become a travel plan as text to save. Fictional demo offer.",
+     "includes": [
+      "Travel plan as text",
+      "One round of changes"
+     ]
+    },
+    "fr": {
+     "name": "Préparation du voyage",
+     "desc": "Vos souhaits deviennent un programme de voyage en texte à enregistrer. Offre de démonstration fictive.",
+     "includes": [
+      "Programme de voyage en texte",
+      "Un tour de modifications"
+     ]
+    }
+   }
   },
   {
    "id": "unterlagen-check",
@@ -208,7 +436,25 @@
    ],
    "tags": [],
    "soldOut": false,
-   "perPerson": true
+   "perPerson": true,
+   "i18n": {
+    "en": {
+     "name": "Document check",
+     "desc": "We go through your documents with you and point to the official authorities. No outcome with any authority is promised. Price per person. Fictional demo offer.",
+     "includes": [
+      "Checklist for your documents",
+      "Pointers to the official authorities"
+     ]
+    },
+    "fr": {
+     "name": "Vérification des documents",
+     "desc": "Nous passons vos documents en revue avec vous et renvoyons aux autorités officielles. Aucun résultat auprès d'une autorité n'est promis. Prix par personne. Offre de démonstration fictive.",
+     "includes": [
+      "Liste de contrôle de vos documents",
+      "Renvois vers les autorités officielles"
+     ]
+    }
+   }
   },
   {
    "id": "einreise-visum",
@@ -224,7 +470,27 @@
    ],
    "tags": [],
    "soldOut": false,
-   "guide": "pages/guides/einreise-visum.html"
+   "guide": "pages/guides/einreise-visum.html",
+   "i18n": {
+    "en": {
+     "name": "Guide: Entry and visa",
+     "desc": "What to sort out before entering Ghana, with pointers to the official authorities. Unlocked under My purchases.",
+     "includes": [
+      "Overview of entry and visa",
+      "Pointers to the official authorities",
+      "Unlocked under My purchases"
+     ]
+    },
+    "fr": {
+     "name": "Guide : entrée et visa",
+     "desc": "Ce qu'il faut clarifier avant d'entrer au Ghana, avec des renvois vers les autorités officielles. Débloqué dans Mes achats.",
+     "includes": [
+      "Aperçu de l'entrée et du visa",
+      "Renvois vers les autorités officielles",
+      "Débloqué dans Mes achats"
+     ]
+    }
+   }
   },
   {
    "id": "anreise-ankunft",
@@ -240,7 +506,27 @@
    ],
    "tags": [],
    "soldOut": false,
-   "guide": "pages/guides/anreise-ankunft.html"
+   "guide": "pages/guides/anreise-ankunft.html",
+   "i18n": {
+    "en": {
+     "name": "Guide: Getting there and arriving",
+     "desc": "How getting there and arriving in Accra can go. Unlocked under My purchases.",
+     "includes": [
+      "Overview of the journey",
+      "Notes on arrival",
+      "Unlocked under My purchases"
+     ]
+    },
+    "fr": {
+     "name": "Guide : voyage et arrivée",
+     "desc": "Comment le voyage et l'arrivée à Accra peuvent se passer. Débloqué dans Mes achats.",
+     "includes": [
+      "Aperçu du voyage",
+      "Remarques sur l'arrivée",
+      "Débloqué dans Mes achats"
+     ]
+    }
+   }
   },
   {
    "id": "reisezeit-gesundheit",
@@ -256,7 +542,27 @@
    ],
    "tags": [],
    "soldOut": false,
-   "guide": "pages/guides/reisezeit-gesundheit.html"
+   "guide": "pages/guides/reisezeit-gesundheit.html",
+   "i18n": {
+    "en": {
+     "name": "Guide: When to go and health",
+     "desc": "When you can travel and what to think about for your health, with pointers to official advice. Unlocked under My purchases.",
+     "includes": [
+      "Overview of when to go",
+      "General health notes",
+      "Unlocked under My purchases"
+     ]
+    },
+    "fr": {
+     "name": "Guide : quand partir et santé",
+     "desc": "Quand voyager et à quoi penser pour la santé, avec des renvois vers les conseils officiels. Débloqué dans Mes achats.",
+     "includes": [
+      "Aperçu de la période de voyage",
+      "Remarques générales sur la santé",
+      "Débloqué dans Mes achats"
+     ]
+    }
+   }
   }
  ],
  "coupons": [
@@ -265,7 +571,15 @@
    "name": "15 € Rabatt ab 200 €",
    "type": "amount",
    "value": 1500,
-   "minSubtotal": 20000
+   "minSubtotal": 20000,
+   "i18n": {
+    "en": {
+     "name": "€15 off from €200"
+    },
+    "fr": {
+     "name": "15 € de réduction dès 200 €"
+    }
+   }
   }
  ],
  "giftCards": {
@@ -280,17 +594,47 @@
    {
     "id": "reiseguthaben",
     "name": "Reiseguthaben Ghana",
-    "line": "Jetzt zahlen, später reisen"
+    "line": "Jetzt zahlen, später reisen",
+    "i18n": {
+     "en": {
+      "name": "Travel credit Ghana",
+      "line": "Pay now, travel later"
+     },
+     "fr": {
+      "name": "Crédit voyage Ghana",
+      "line": "Payez maintenant, voyagez plus tard"
+     }
+    }
    },
    {
     "id": "fuer-zwei",
     "name": "Für zwei",
-    "line": "Ein Guthaben für eure gemeinsame Reise"
+    "line": "Ein Guthaben für eure gemeinsame Reise",
+    "i18n": {
+     "en": {
+      "name": "For two",
+      "line": "One credit for your trip together"
+     },
+     "fr": {
+      "name": "Pour deux",
+      "line": "Un crédit pour votre voyage à deux"
+     }
+    }
    },
    {
     "id": "danke",
     "name": "Zum Dank",
-    "line": "Ein Stück Ghana zum Dankeschön"
+    "line": "Ein Stück Ghana zum Dankeschön",
+    "i18n": {
+     "en": {
+      "name": "Thank you",
+      "line": "A piece of Ghana as a thank-you"
+     },
+     "fr": {
+      "name": "Merci",
+      "line": "Un petit bout de Ghana pour dire merci"
+     }
+    }
    }
   ]
  }
