@@ -37,7 +37,7 @@
     header.className = 'site-header';
     header.innerHTML =
       '<div class="site-header__inner">' +
-      '<a class="site-brand" href="' + esc(base) + 'index.html" aria-label="Papa Travel, Startseite"><span class="site-brand__mark" aria-hidden="true">P</span><span class="site-brand__name">Papa Travel</span></a>' +
+      '<a class="site-brand" href="' + esc(base) + 'index.html" aria-label="Ghana Vorab, Startseite"><span class="site-brand__mark" aria-hidden="true">G</span><span class="site-brand__name">Ghana Vorab</span></a>' +
       '<nav class="site-nav" id="site-nav" aria-label="Hauptmenü"><ul>' + links + '</ul></nav>' +
       '<div class="site-header__actions" id="site-actions"></div>' +
       '<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle__bars" aria-hidden="true"></span><span class="visually-hidden">Menü</span></button>' +
@@ -48,7 +48,7 @@
     footer.className = 'site-footer';
     footer.innerHTML =
       '<div class="site-footer__inner">' +
-      '<div class="site-footer__brand"><strong>Papa Travel</strong><p>Eine erfundene Reiseagentur für Reisen nach Ghana. Agentur, Pakete und Preise sind fiktiv.</p></div>' +
+      '<div class="site-footer__brand"><strong>Ghana Vorab</strong><p>Zahl jetzt. Flieg später. Eine erfundene Reiseagentur für Reisen nach Ghana. Agentur, Pakete und Preise sind fiktiv.</p></div>' +
       '<nav aria-label="Fußbereich"><ul>' + links + '</ul></nav>' +
       '<p class="site-footer__test">Demo-Shop: nur Testzahlungen, es bewegt sich kein echtes Geld.</p>' +
       '<p class="site-footer__small">Allgemeine Informationen, keine Rechts- oder Einreiseberatung. Regeln bitte vor der Reise bei den offiziellen Stellen prüfen.</p>' +
