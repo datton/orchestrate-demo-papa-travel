@@ -1,0 +1,92 @@
+/* tokens.css — Designer. The look for the Papa Travel: flashy but trustworthy: signal red, gold and green on warm white and ink, bold serif display, hard pop shadows.
+   Palette: near-black ink neutrals on warm white paper, ONE accent: signal red (#c8102e, 5.9:1 on white) + gold, green and sky as supporting colours.
+   Type: system fonts only; a bold display scale with clamp() and tight tracking on large type.
+   Motion: one easing, 400-900 ms, 60 ms stagger. Animate only transform, opacity, filter. */
+:root {
+  /* palette */
+  --bg: #fffdf7;
+  --surface: #ffffff;
+  --surface-2: #fff0c9;
+  --text: #16130f;            /* 15:1 on --bg */
+  --text-muted: #5a5346;      /* 6.6:1 on --bg */
+  --line: #ecdcae;
+  --dark: #0f0d0a;            /* ink band */
+  --dark-2: #26211a;
+  --on-dark: #fff8ea;         /* 14:1 on --dark */
+  --on-dark-muted: #cfc6b0;   /* 7.6:1 on --dark */
+  --accent: #c8102e;
+  --accent-strong: #9a0c23;
+  --accent-soft: #ffe0e0;
+  --accent-on-dark: #ff8f94;  /* 7:1 on --dark */
+  --on-accent: #ffffff;
+  /* bright supporting colours: fills, chips, big type, calendar days. Use the -ink versions for small text on light. */
+  --sun: #ffc400; --sun-ink: #6b4d00;   /* gold */
+  --ocean: #1fa7e0; --ocean-ink: #0b5f86;   /* sky */
+  --palm: #0f9d58; --palm-ink: #0a6b3c;     /* green */
+  --violet: #ff7a1a; --violet-ink: #a84a00;   /* orange (name kept) */
+  --success: #1c6b4a;
+  --danger: #b00020;
+  --focus: #0b4fd1;
+  --focus-on-dark: #ffd24a;
+
+  /* type */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", ui-serif, serif;   /* bold serif display: the fresh part */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-xs: .8125rem;
+  --fs-sm: .9375rem;
+  --fs-base: 1.0625rem;
+  --fs-lg: clamp(1.2rem, 1rem + .8vw, 1.5rem);
+  --fs-step: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);   /* scrollytelling step text */
+  --fs-h2: clamp(2rem, 1.2rem + 3.6vw, 4.25rem);
+  --fs-h1: clamp(2.75rem, 1.4rem + 6vw, 7rem);
+  --fs-giant: clamp(5rem, 2rem + 16vw, 16rem);        /* marquee / changing word */
+  --lh-tight: 1.02;
+  --lh-snug: 1.2;
+  --lh-body: 1.6;
+  --track-display: -.03em;
+  --track-h2: -.025em;
+  --measure: 65ch;
+
+  /* spacing, radius, shadow */
+  --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem;
+  --space-5: 1.5rem; --space-6: 2rem; --space-7: 3rem; --space-8: 4.5rem;
+  --section: clamp(5rem, 12vw, 10rem);
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --radius-sm: .75rem; --radius: 1.25rem; --radius-lg: 2rem; --radius-pill: 999px;
+  --border: 2px solid var(--text);
+  --shadow-sm: 2px 2px 0 var(--text);
+  --shadow: 5px 5px 0 var(--text);
+  --shadow-lg: 9px 9px 0 var(--text);
+  --glow: radial-gradient(60% 60% at 50% 40%, rgba(255, 196, 0, .30), rgba(200, 16, 46, .10) 50%, transparent 72%);
+  --gradient-text: linear-gradient(100deg, #c8102e 0%, #e3560a 55%, #b57a00 100%);
+  --gradient-text-dark: linear-gradient(100deg, #ff8f94 0%, #ffc400 50%, #6fe0a2 100%);
+
+  /* motion */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --dur-fast: 400ms;
+  --dur: 650ms;
+  --dur-slow: 900ms;
+  --stagger: 60ms;
+  --rise: 1.25rem;            /* reveal travel distance */
+  --blur-in: 6px;             /* reveal start blur */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur: 0ms; --dur-slow: 0ms; --stagger: 0ms; --rise: 0; --blur-in: 0; }
+}
+
+/* CSS-only accents */
+.text-gradient {
+  background: var(--gradient-text);
+  background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
+.band--dark .text-gradient { background-image: var(--gradient-text-dark); }
+.glow { background-image: var(--glow); }
+
+/* Keyboard focus stays visible on dark surfaces. */
+.band--dark, .site-footer { --focus: var(--focus-on-dark); }
+/* Pop accent: a gold highlighter swipe behind a key word (CSS only). */
+.hl { background: linear-gradient(transparent 58%, var(--sun) 58% 92%, transparent 92%); padding: 0 .1em; }
