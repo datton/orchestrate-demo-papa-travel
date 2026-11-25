@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script src="../../js/lang.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Travel credit: pay now, travel later</title>
+<meta name="description" content="Buy travel credit for Ghana Vorab: choose an amount and a design, pay (demo, test payment only) and get your code. The credit covers any offer at checkout.">
+<style>@view-transition { navigation: auto; }</style>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/shop/core.css">
+<link rel="stylesheet" href="../../css/shop/gifts.css">
+<script src="../../js/nav.js" defer></script>
+<script src="../../js/motion.js" defer></script>
+<script src="../../js/app.js" defer></script>
+<script src="../../js/shop/core.js" defer></script>
+<script src="../../js/shop/cart.js" defer></script>
+<script src="../../js/shop/gifts.js" defer></script>
+<link rel="alternate" hreflang="de" href="https://papa-travel.demo.orchestrate.ca/pages/gift-cards.html">
+<link rel="alternate" hreflang="en" href="https://papa-travel.demo.orchestrate.ca/en/pages/gift-cards.html">
+<link rel="alternate" hreflang="fr" href="https://papa-travel.demo.orchestrate.ca/fr/pages/gift-cards.html">
+<link rel="alternate" hreflang="x-default" href="https://papa-travel.demo.orchestrate.ca/pages/gift-cards.html">
+</head>
+<body data-gifts="buy">
+<main id="main">
+  <section class="band gf-hero">
+    <p class="gf-eyebrow" data-reveal>Travel credit <span class="demo-label">Demo: fictional agency Ghana Vorab</span></p>
+    <h1 data-words>Travel credit: pay now, travel later.</h1>
+    <p class="gf-lead" data-reveal>You buy a credit today and use it later: for yourself or as a gift. You get a code that you enter at checkout.</p>
+  </section>
+
+  <section class="band gf-sec" aria-labelledby="h-how">
+    <h2 id="h-how" data-reveal>How it works.</h2>
+    <ol class="gf-steps">
+      <li data-reveal><strong>1. Choose an amount.</strong> The credit covers any package and any service at checkout.</li>
+      <li data-reveal><strong>2. Pay.</strong> On the shop’s test payment page. No real money moves.</li>
+      <li data-reveal><strong>3. Use the code.</strong> Enter it at checkout. If the booking costs less than the credit, the rest stays on the code.</li>
+    </ol>
+  </section>
+
+  <section class="band band--dark gf-sec" id="kaufen" aria-labelledby="h-buy">
+    <h2 id="h-buy">Your travel credit</h2>
+    <div id="gf-status" class="gf-status" role="status" aria-live="polite"></div>
+    <div id="gf-result" class="gf-result" hidden></div>
+    <div class="gf-wrap" id="gf-buy">
+      <form class="gf-card gf-form" id="gf-form" novalidate hidden>
+        <fieldset class="gf-fs"><legend>Amount</legend><div class="gf-amounts" id="gf-amounts"></div>
+          <div class="gf-field"><label for="gf-custom">Other amount in euros <span class="gf-hint" id="gf-range"></span></label>
+          <input id="gf-custom" inputmode="numeric" autocomplete="off"></div></fieldset>
+        <fieldset class="gf-fs"><legend>Design</legend><div class="gf-designs" id="gf-designs"></div></fieldset>
+        <div class="gf-field"><label for="gf-to">For <span class="gf-hint">(name)</span></label><input id="gf-to" maxlength="60" autocomplete="off" required></div>
+        <div class="gf-field"><label for="gf-from">From <span class="gf-hint">(name)</span></label><input id="gf-from" maxlength="60" autocomplete="name" required></div>
+        <div class="gf-field"><label for="gf-msg">Message <span class="gf-hint">(optional)</span></label><textarea id="gf-msg" rows="3" maxlength="240"></textarea></div>
+        <p class="gf-error" id="gf-error" role="alert" hidden></p>
+        <button type="submit" class="gf-btn gf-btn--solid" id="gf-pay">Continue to the test payment</button>
+        <p class="gf-test">Demo shop: test payments only. No real money moves.</p>
+      </form>
+      <div class="gf-card gf-preview" id="gf-preview" aria-live="polite" hidden></div>
+    </div>
+    <div id="gf-load" class="gf-load" role="status">Loading the offer …</div>
+    <noscript><p>You need JavaScript to buy travel credit.</p></noscript>
+    <p class="gf-links"><a class="gf-btn" href="gift.html">Check the balance of a code</a> <a class="gf-btn" href="services.html">See the offers</a></p>
+  </section>
+
+  <section class="band gf-end">
+    <p class="guide-note" data-reveal>General information, not legal or immigration advice. Please check the rules with the official authorities before you travel. Ghana Vorab is a fictional demo agency, the credit has no real value.</p>
+  </section>
+</main>
+</body>
+</html>

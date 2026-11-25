@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<script src="../../js/lang.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crédit voyage&nbsp;: payez maintenant, voyagez plus tard</title>
+<meta name="description" content="Achetez du crédit voyage Ghana Vorab&nbsp;: choisissez un montant et un visuel, payez (démo, paiement de test uniquement) et recevez votre code. Le crédit couvre toute offre à la caisse.">
+<style>@view-transition { navigation: auto; }</style>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/shop/core.css">
+<link rel="stylesheet" href="../../css/shop/gifts.css">
+<script src="../../js/nav.js" defer></script>
+<script src="../../js/motion.js" defer></script>
+<script src="../../js/app.js" defer></script>
+<script src="../../js/shop/core.js" defer></script>
+<script src="../../js/shop/cart.js" defer></script>
+<script src="../../js/shop/gifts.js" defer></script>
+<link rel="alternate" hreflang="de" href="https://papa-travel.demo.orchestrate.ca/pages/gift-cards.html">
+<link rel="alternate" hreflang="en" href="https://papa-travel.demo.orchestrate.ca/en/pages/gift-cards.html">
+<link rel="alternate" hreflang="fr" href="https://papa-travel.demo.orchestrate.ca/fr/pages/gift-cards.html">
+<link rel="alternate" hreflang="x-default" href="https://papa-travel.demo.orchestrate.ca/pages/gift-cards.html">
+</head>
+<body data-gifts="buy">
+<main id="main">
+  <section class="band gf-hero">
+    <p class="gf-eyebrow" data-reveal>Crédit voyage <span class="demo-label">Démo&nbsp;: agence fictive Ghana Vorab</span></p>
+    <h1 data-words>Crédit voyage&nbsp;: payez maintenant, voyagez plus tard.</h1>
+    <p class="gf-lead" data-reveal>Vous achetez un crédit aujourd’hui et vous l’utilisez plus tard&nbsp;: pour vous ou en cadeau. Vous recevez un code à saisir à la caisse.</p>
+  </section>
+
+  <section class="band gf-sec" aria-labelledby="h-how">
+    <h2 id="h-how" data-reveal>Comment ça marche.</h2>
+    <ol class="gf-steps">
+      <li data-reveal><strong>1. Choisissez un montant.</strong> Le crédit couvre tout forfait et tout service à la caisse.</li>
+      <li data-reveal><strong>2. Payez.</strong> Sur la page de paiement de test de la boutique. Aucun argent réel n’est débité.</li>
+      <li data-reveal><strong>3. Utilisez le code.</strong> Saisissez-le à la caisse. Si la réservation coûte moins que le crédit, le solde reste sur le code.</li>
+    </ol>
+  </section>
+
+  <section class="band band--dark gf-sec" id="kaufen" aria-labelledby="h-buy">
+    <h2 id="h-buy">Votre crédit voyage</h2>
+    <div id="gf-status" class="gf-status" role="status" aria-live="polite"></div>
+    <div id="gf-result" class="gf-result" hidden></div>
+    <div class="gf-wrap" id="gf-buy">
+      <form class="gf-card gf-form" id="gf-form" novalidate hidden>
+        <fieldset class="gf-fs"><legend>Montant</legend><div class="gf-amounts" id="gf-amounts"></div>
+          <div class="gf-field"><label for="gf-custom">Autre montant en euros <span class="gf-hint" id="gf-range"></span></label>
+          <input id="gf-custom" inputmode="numeric" autocomplete="off"></div></fieldset>
+        <fieldset class="gf-fs"><legend>Visuel</legend><div class="gf-designs" id="gf-designs"></div></fieldset>
+        <div class="gf-field"><label for="gf-to">Pour <span class="gf-hint">(nom)</span></label><input id="gf-to" maxlength="60" autocomplete="off" required></div>
+        <div class="gf-field"><label for="gf-from">De la part de <span class="gf-hint">(nom)</span></label><input id="gf-from" maxlength="60" autocomplete="name" required></div>
+        <div class="gf-field"><label for="gf-msg">Message <span class="gf-hint">(facultatif)</span></label><textarea id="gf-msg" rows="3" maxlength="240"></textarea></div>
+        <p class="gf-error" id="gf-error" role="alert" hidden></p>
+        <button type="submit" class="gf-btn gf-btn--solid" id="gf-pay">Continuer vers le paiement de test</button>
+        <p class="gf-test">Boutique de démonstration&nbsp;: paiements de test uniquement, aucun argent réel n’est débité.</p>
+      </form>
+      <div class="gf-card gf-preview" id="gf-preview" aria-live="polite" hidden></div>
+    </div>
+    <div id="gf-load" class="gf-load" role="status">Chargement de l’offre …</div>
+    <noscript><p>Il faut JavaScript pour acheter du crédit voyage.</p></noscript>
+    <p class="gf-links"><a class="gf-btn" href="gift.html">Vérifier le solde d’un code</a> <a class="gf-btn" href="services.html">Voir les offres</a></p>
+  </section>
+
+  <section class="band gf-end">
+    <p class="guide-note" data-reveal>Informations générales, pas de conseil juridique ni en matière d’immigration. Vérifiez les règles auprès des autorités officielles avant le voyage. Ghana Vorab est une agence de démonstration fictive, le crédit n’a aucune valeur réelle.</p>
+  </section>
+</main>
+</body>
+</html>
