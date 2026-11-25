@@ -1,66 +1,85 @@
-/* tokens.css — Designer. The look for the Papa Travel: flashy but trustworthy: signal red, gold and green on warm white and ink, bold serif display, hard pop shadows.
-   Palette: near-black ink neutrals on warm white paper, ONE accent: signal red (#c8102e, 5.9:1 on white) + gold, green and sky as supporting colours.
-   Type: system fonts only; a bold display scale with clamp() and tight tracking on large type.
-   Motion: one easing, 400-900 ms, 60 ms stagger. Animate only transform, opacity, filter. */
+/* tokens.css — Designer. Ghana Vorab ("Zahl jetzt. Flieg später."): BOARDING PASS AT NIGHT.
+   Dark-first: deep night-navy pages, electric-indigo bands, ONE electric aqua accent (#19e3c9) that reads as "go".
+   Supporting: ticket-yellow and hot pink, as fills and gradients. Light text throughout; all text pairs are AA
+   (text 16:1, muted 8:1, aqua on night 11:1, on-accent night-on-aqua 11:1, yellow on night 14:1).
+   Type: heavy, tight system sans for display; monospace "departures board" labels (uppercase, wide tracking).
+   Shape: ticket cards with notches and dashed tear lines (.ticket), neon-edge glows instead of soft grey shadows.
+   Motion: one easing, 400-900 ms, 60 ms stagger; transform/opacity/filter only; reduced motion shows everything. */
 :root {
   /* palette */
-  --bg: #fffdf7;
-  --surface: #ffffff;
-  --surface-2: #fff0c9;
-  --text: #16130f;            /* 15:1 on --bg */
-  --text-muted: #5a5346;      /* 6.6:1 on --bg */
-  --line: #ecdcae;
-  --dark: #0f0d0a;            /* ink band */
-  --dark-2: #26211a;
-  --on-dark: #fff8ea;         /* 14:1 on --dark */
-  --on-dark-muted: #cfc6b0;   /* 7.6:1 on --dark */
-  --accent: #c8102e;
-  --accent-strong: #9a0c23;
-  --accent-soft: #ffe0e0;
-  --accent-on-dark: #ff8f94;  /* 7:1 on --dark */
-  --on-accent: #ffffff;
-  /* bright supporting colours: fills, chips, big type, calendar days. Use the -ink versions for small text on light. */
-  --sun: #ffc400; --sun-ink: #6b4d00;   /* gold */
-  --ocean: #1fa7e0; --ocean-ink: #0b5f86;   /* sky */
-  --palm: #0f9d58; --palm-ink: #0a6b3c;     /* green */
-  --violet: #ff7a1a; --violet-ink: #a84a00;   /* orange (name kept) */
-  --success: #1c6b4a;
-  --danger: #b00020;
-  --focus: #0b4fd1;
-  --focus-on-dark: #ffd24a;
+  --bg: #070b1a;              /* night */
+  --surface: #0f1634;         /* card */
+  --surface-2: #172047;       /* raised / stripe */
+  --text: #eef2ff;            /* 16:1 on --bg */
+  --text-muted: #aab6dc;      /* 8.5:1 on --bg */
+  --line: #2b376e;            /* hairlines (decor) */
+  --dark: #17106b;            /* electric-indigo band */
+  --dark-2: #231a8f;
+  --on-dark: #ffffff;         /* 15:1 on --dark */
+  --on-dark-muted: #c7cdfa;   /* 9:1 on --dark */
+  --accent: #19e3c9;          /* electric aqua */
+  --accent-strong: #6ff5e0;   /* hover */
+  --accent-soft: rgba(25, 227, 201, .14);
+  --accent-on-dark: #19e3c9;  /* 8:1 on --dark */
+  --on-accent: #04121a;       /* night on aqua: 11:1 */
+  --sun: #ffd23f;             /* ticket yellow, 13:1 on --bg */
+  --sun-ink: #ffd23f;
+  --ocean: #6aa5ff;           /* sky, 7:1 */
+  --ocean-ink: #8fbcff;
+  --palm: #3ee08f;            /* go-green, 10:1 */
+  --palm-ink: #3ee08f;
+  --violet: #ff5fa8;          /* hot pink (name kept), 6.5:1 */
+  --violet-ink: #ff86bd;
+  --success: #3ee08f;
+  --danger: #ff6b81;          /* 6.6:1 on --bg */
+  --warn-bg: #3a2d08;
+  --warn-text: #ffe28a;       /* 11:1 on --warn-bg */
+  --focus: #7cf3ff;           /* 13:1 */
+  --focus-on-dark: #ffd23f;
 
   /* type */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", ui-serif, serif;   /* bold serif display: the fresh part */
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-display: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   --fs-xs: .8125rem;
   --fs-sm: .9375rem;
   --fs-base: 1.0625rem;
   --fs-lg: clamp(1.2rem, 1rem + .8vw, 1.5rem);
-  --fs-step: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);   /* scrollytelling step text */
-  --fs-h2: clamp(2rem, 1.2rem + 3.6vw, 4.25rem);
-  --fs-h1: clamp(2.75rem, 1.4rem + 6vw, 7rem);
-  --fs-giant: clamp(5rem, 2rem + 16vw, 16rem);        /* marquee / changing word */
-  --lh-tight: 1.02;
-  --lh-snug: 1.2;
+  --fs-step: clamp(1.6rem, 1.1rem + 1.9vw, 2.75rem);
+  --fs-h2: clamp(2.2rem, 1.2rem + 4.2vw, 5rem);
+  --fs-h1: clamp(3rem, 1.4rem + 7.2vw, 8rem);
+  --fs-giant: clamp(5rem, 2rem + 17vw, 18rem);
+  --lh-tight: .98;
+  --lh-snug: 1.15;
   --lh-body: 1.6;
-  --track-display: -.03em;
-  --track-h2: -.025em;
+  --track-display: -.045em;
+  --track-h2: -.035em;
+  --track-label: .16em;
   --measure: 65ch;
 
-  /* spacing, radius, shadow */
+  /* spacing, shape, depth */
   --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem;
   --space-5: 1.5rem; --space-6: 2rem; --space-7: 3rem; --space-8: 4.5rem;
   --section: clamp(5rem, 12vw, 10rem);
   --gutter: clamp(1.25rem, 5vw, 4rem);
-  --radius-sm: .75rem; --radius: 1.25rem; --radius-lg: 2rem; --radius-pill: 999px;
-  --border: 2px solid var(--text);
-  --shadow-sm: 2px 2px 0 var(--text);
-  --shadow: 5px 5px 0 var(--text);
-  --shadow-lg: 9px 9px 0 var(--text);
-  --glow: radial-gradient(60% 60% at 50% 40%, rgba(255, 196, 0, .30), rgba(200, 16, 46, .10) 50%, transparent 72%);
-  --gradient-text: linear-gradient(100deg, #c8102e 0%, #e3560a 55%, #b57a00 100%);
-  --gradient-text-dark: linear-gradient(100deg, #ff8f94 0%, #ffc400 50%, #6fe0a2 100%);
+  --radius-sm: .6rem; --radius: 1.1rem; --radius-lg: 1.6rem; --radius-pill: 999px;
+  --border: 1px solid var(--line);
+  --rule: 1px solid var(--line);
+  --shadow-sm: 0 0 0 1px var(--line), 0 4px 14px rgba(0, 0, 0, .35);
+  --shadow: 0 0 0 1px var(--line), 0 16px 40px rgba(0, 0, 0, .45);
+  --shadow-lg: 0 0 0 1px var(--line), 0 30px 80px rgba(0, 0, 0, .55), 0 0 60px rgba(25, 227, 201, .12);
+  --glow: radial-gradient(55% 60% at 50% 35%, rgba(25, 227, 201, .26), rgba(106, 165, 255, .14) 45%, transparent 72%);
+  --gradient-text: linear-gradient(100deg, #19e3c9 0%, #6aa5ff 50%, #ff5fa8 100%);
+  --gradient-text-dark: linear-gradient(100deg, #19e3c9 0%, #ffffff 45%, #ffd23f 100%);
+  --neon-ring: 0 0 0 1px rgba(25, 227, 201, .6), 0 0 28px rgba(25, 227, 201, .35);
+
+  /* CSS-only night textures */
+  --stars: radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.7) 50%, transparent 51%),
+           radial-gradient(1px 1px at 78% 32%, rgba(255,255,255,.55) 50%, transparent 51%),
+           radial-gradient(1.5px 1.5px at 44% 72%, rgba(255,255,255,.6) 50%, transparent 51%),
+           radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,.5) 50%, transparent 51%),
+           radial-gradient(1px 1px at 28% 90%, rgba(255,255,255,.45) 50%, transparent 51%);
+  --flightpath: repeating-linear-gradient(90deg, rgba(25, 227, 201, .55) 0 10px, transparent 10px 20px);
 
   /* motion */
   --ease: cubic-bezier(.2, .7, .2, 1);
@@ -68,15 +87,17 @@
   --dur: 650ms;
   --dur-slow: 900ms;
   --stagger: 60ms;
-  --rise: 1.25rem;            /* reveal travel distance */
-  --blur-in: 6px;             /* reveal start blur */
+  --rise: 1.25rem;
+  --blur-in: 6px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root { --dur-fast: 0ms; --dur: 0ms; --dur-slow: 0ms; --stagger: 0ms; --rise: 0; --blur-in: 0; }
 }
 
-/* CSS-only accents */
+:root { color-scheme: dark; }
+
+/* ---- vocabulary any page can use (all visible without JS) ---- */
 .text-gradient {
   background: var(--gradient-text);
   background-size: 200% 100%;
@@ -85,8 +106,26 @@
 }
 .band--dark .text-gradient { background-image: var(--gradient-text-dark); }
 .glow { background-image: var(--glow); }
+.stars { background-image: var(--stars); }
 
-/* Keyboard focus stays visible on dark surfaces. */
+/* departures-board label: GHANA · VORAB · 24 */
+.board, .eyebrow {
+  font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: var(--track-label);
+  text-transform: uppercase; color: var(--accent);
+}
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* boarding-pass card: notches at the tear line and a dashed divider */
+.ticket {
+  position: relative; background: var(--surface); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  -webkit-mask: radial-gradient(circle .7rem at 0 var(--tear, 70%), transparent 98%, #000) left / 51% 100% no-repeat,
+                radial-gradient(circle .7rem at 100% var(--tear, 70%), transparent 98%, #000) right / 51% 100% no-repeat;
+          mask: radial-gradient(circle .7rem at 0 var(--tear, 70%), transparent 98%, #000) left / 51% 100% no-repeat,
+                radial-gradient(circle .7rem at 100% var(--tear, 70%), transparent 98%, #000) right / 51% 100% no-repeat;
+}
+.tear { border: 0; border-top: 2px dashed var(--line); margin: var(--space-4) 0; }
+.flightpath { height: 2px; background-image: var(--flightpath); }
+
+/* keyboard focus stays visible on the dark bands and footer */
 .band--dark, .site-footer { --focus: var(--focus-on-dark); }
-/* Pop accent: a gold highlighter swipe behind a key word (CSS only). */
-.hl { background: linear-gradient(transparent 58%, var(--sun) 58% 92%, transparent 92%); padding: 0 .1em; }
