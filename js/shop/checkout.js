@@ -69,6 +69,8 @@
     var prev = state.gift;
     state.gift = code;
     refresh().then(function (ok) {
+      var g = ok && state.quote && state.quote.giftCard;
+      if (code && g && !g.applied && !g.balanceAfter) { ok = false; state.lastError = 'Auf diesem Reiseguthaben ist nichts mehr übrig.'; }
       if (!ok) { state.gift = prev; $('co-gift-err').textContent = state.lastError || 'Dieses Reiseguthaben kann nicht verwendet werden.'; refresh(); }
       else { if (code) $('co-gift').value = ''; renderWallet(); }
     });
