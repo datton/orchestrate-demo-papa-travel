@@ -13,7 +13,7 @@
 .gf-amounts, .gf-designs { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: .75rem; }
 .gf-chip { position: relative; }
 .gf-chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
-.gf-chip span { display: block; padding: .65rem 1.1rem; border: 2px solid var(--line, #bbb); border-radius: var(--radius-pill, 99rem); font-weight: 700; transition: border-color .2s, background .2s; }
+.gf-chip span { display: block; padding: .65rem 1.1rem; border: 2px solid var(--field-line, #6674b4); border-radius: var(--radius-pill, 99rem); font-weight: 700; transition: border-color .2s, background .2s; }
 .gf-chip--design span { border-radius: var(--radius-sm, .75rem); }
 .gf-chip small { display: block; font-weight: 400; color: var(--text-muted); }
 .gf-chip input:checked + span { border-color: var(--accent); background: var(--accent-soft); }
@@ -21,7 +21,7 @@
 .gf-field { display: grid; gap: .3rem; margin-bottom: 1rem; }
 .gf-field label { font-weight: 700; }
 .gf-hint { font-weight: 400; color: var(--text-muted); }
-.gf-field input, .gf-field textarea { font: inherit; width: 100%; padding: .7rem .9rem; border-radius: var(--radius-sm, .6rem); border: 2px solid var(--line, #bbb); background: var(--bg, #fff); color: var(--text); }
+.gf-field input, .gf-field textarea { font: inherit; width: 100%; padding: .7rem .9rem; border-radius: var(--radius-sm, .6rem); border: 2px solid var(--field-line, #6674b4); background: var(--bg, #fff); color: var(--text); }
 .gf-field input:focus-visible, .gf-field textarea:focus-visible { border-color: var(--accent); }
 .gf-error { color: var(--danger, #b00020); font-weight: 600; margin: 0 0 1rem; }
 .band--dark .gf-error { background: var(--surface); padding: .6rem .9rem; border-radius: var(--radius-sm, .6rem); }
