@@ -6,6 +6,15 @@
   var API = ROOT + 'api/shop/';
   var SITE = (ROOT.match(/\/s\/([^\/]+)\/$/) || [])[1] || location.hostname.split('.')[0] || 'site';
   var PREFIX = 'shop:' + SITE + ':';
+  // The cart drawer needs css/shop/cart.css on every page; load it here when the page does not link it.
+  (function () {
+    try {
+      var href = ROOT + 'css/shop/cart.css';
+      var links = document.querySelectorAll('link[rel="stylesheet"]');
+      for (var i = 0; i < links.length; i++) if (/css\/shop\/cart\.css/.test(links[i].getAttribute('href') || '')) return;
+      var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href; document.head.appendChild(l);
+    } catch (e) {}
+  })();
   var memory = {};
 
   function get(key, fallback) {
