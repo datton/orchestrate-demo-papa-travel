@@ -1,0 +1,14 @@
+/* Packliste (Senior Dev 8): nur Variablen aus tokens.css. Inhalt kommt per JS: kein data-reveal darauf. */
+.pk-wrap{max-width:52rem}
+.pk-group{margin:1.75rem 0 0}
+.pk-group h3{font-size:var(--fs-step);margin:0 0 .6rem}
+.pk-bar{height:.6rem;border-radius:var(--radius-pill);background:var(--line);overflow:hidden;max-width:26rem;margin:.5rem 0 1rem}
+.pk-bar span{display:block;height:100%;width:0;background:var(--accent);transition:width .4s cubic-bezier(.2,.7,.2,1)}
+.pk-list{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.pk-list label{display:flex;gap:.8rem;align-items:flex-start;padding:.75rem 1rem;background:var(--surface);border:2px solid var(--line);border-radius:var(--radius-sm);cursor:pointer;transition:border-color .2s,background .2s}
+.pk-list label:hover{border-color:var(--accent)}
+.pk-list input{width:1.4rem;height:1.4rem;flex:none;margin-top:.1rem;accent-color:var(--accent)}
+.pk-list label:has(input:checked){background:var(--accent-soft)}
+.pk-list label:has(input:focus-visible){outline:3px solid var(--accent-strong);outline-offset:2px}
+.pk-error{padding:1rem;border:2px solid var(--accent);border-radius:var(--radius-sm)}
+@media (prefers-reduced-motion:reduce){.pk-bar span,.pk-list label{transition:none}}
