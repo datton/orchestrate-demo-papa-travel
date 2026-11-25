@@ -1,4 +1,4 @@
-/* Bestellbestätigung (Senior Developer 4, Papa Travel). Farben nur aus tokens.css. */
+/* Bestellbestätigung (Senior Developer 4, Ghana Vorab). Farben nur aus tokens.css. */
 .ord { padding-block: clamp(4rem, 10vw, 8rem); }
 .ord__wrap { max-width: 52rem; margin-inline: auto; }
 .ord__eyebrow { margin: 0 0 .75rem; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--accent, #0f6b4f); }

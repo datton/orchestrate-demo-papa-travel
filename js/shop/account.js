@@ -1,4 +1,4 @@
-/* Meine Käufe (Senior Developer 4, Papa Travel): pages/account.html. Demo-Sperre im Browser, kein echter Schutz. */
+/* Meine Käufe (Senior Developer 4, Ghana Vorab): pages/account.html. Demo-Sperre im Browser, kein echter Schutz. */
 (function () {
   'use strict';
   var root = document.getElementById('account-root');

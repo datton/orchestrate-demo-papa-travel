@@ -1,4 +1,4 @@
-/* Bestellbestätigung (Senior Developer 4, Papa Travel): pages/order.html?o=<token> */
+/* Bestellbestätigung (Senior Developer 4, Ghana Vorab): pages/order.html?o=<token> */
 (function () {
   'use strict';
   var root = document.getElementById('order-root');
@@ -19,7 +19,7 @@
   var STEP = { paid: 'Zahlung eingegangen', making: 'Wird vorbereitet', ready: 'Bereit', collected: 'Zugestellt' };
   function payLabel(c) { return /^gift ?card/i.test(c) ? 'Reiseguthaben (Demo)' : c + ' (Testkarte)'; }
   function paid(o) { return o && o.status && o.status !== 'pending' && o.status !== 'cancelled' && o.status !== 'refunded'; }
-  function brand() { return (cat && cat.brand && cat.brand.name) || 'Papa Travel'; }
+  function brand() { return (cat && cat.brand && cat.brand.name) || 'Ghana Vorab'; }
 
   function receipt(o) {
     var t = ['QUITTUNG (Demo: nur Testzahlung, es bewegt sich kein echtes Geld)', '', brand() + ' (fiktive Agentur)',
@@ -62,7 +62,7 @@
         (o.lines || []).map(function (l) {
           var it = itemOf(l.item), link = guideLink(it), b = '<div class="ord__next"><h3>' + esc(l.name) + '</h3>';
           if (link) b += '<p>Freigeschaltet. Du findest ihn jederzeit unter <a href="account.html">Meine Käufe</a> oder gleich hier: <a href="' + esc(Shop.url(link)) + '">öffnen</a>.</p>';
-          else b += '<p>Das ist ein Angebot der fiktiven Agentur Papa Travel. Diese Demo verschickt nichts; in der echten Welt würde sich das Team bei dir melden und alles mit dir durchgehen. Nenne dann einfach deine Bestellnummer ' + esc(o.number) + '.</p>';
+          else b += '<p>Das ist ein Angebot der fiktiven Agentur Ghana Vorab. Diese Demo verschickt nichts; in der echten Welt würde sich das Team bei dir melden und alles mit dir durchgehen. Nenne dann einfach deine Bestellnummer ' + esc(o.number) + '.</p>';
           listOf(it.next || it.afterBuying || it.whatNext).forEach(function (n) { b += '<p>' + esc(n) + '</p>'; });
           var prep = listOf(it.prepare || it.bring);
           if (prep.length) b += '<p><strong>Halte bereit:</strong> ' + prep.map(esc).join(', ') + '.</p>';
