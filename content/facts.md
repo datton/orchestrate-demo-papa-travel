@@ -1,4 +1,4 @@
-# Papa Travel: Fakten für die Website (Deutsch)
+# Ghana Vorab: Fakten für die Website (Deutsch)
 
 Stand: 21.11.2026 (Auswärtiges Amt am 21.11.2026 gelesen; seitdem nicht neu geprüft, Regeln bitte vor der Reise erneut prüfen). Verfasst vom Ghana Travel & Foreign Affairs Expert. Allgemeine Informationen, keine Rechts- oder Einreiseberatung.
 Primärquelle für Deutsche: Auswärtiges Amt, Ghana: Reise- und Sicherheitshinweise (Stand 21.11.2026, seit 05.11.2026 unverändert): https://www.auswaertiges-amt.de/de/service/laender/ghana-node/ghanasicherheit/203372
@@ -111,7 +111,7 @@ Die folgenden Punkte stammen aus den amtlichen allgemeinen Hinweisen. Keine Sich
 - Hotels, Lodges, Fluggesellschaften: keine echten Namen als Empfehlung oder Partner.
 
 ## 7. Fiktive Elemente (Pflichtkennzeichnung)
-Agentur "Papa Travel", Pakete (z. B. Rundreisen, Strandwoche, Flughafentransfer, Erlebnisse, Tagesausflüge, Planungshilfe), Preise, Verfügbarkeit, Bewertungen, Bestellnummern und Referenzen sind **Demo/fiktiv**. Zahlung ist ein **Stripe-Testmodus**: keine echte Zahlung, keine echten Kartendaten. Kein Reiseveranstalter-Status, keine Reisesicherungsschein-Aussagen, keine Rechtsberatung. Auch nicht behaupten, dass die Agentur Visa beantragt oder garantiert: nur Hinweise zum Beantragen über das offizielle Portal bzw. die Botschaft von Ghana in Berlin.
+Agentur "Ghana Vorab", Pakete (z. B. Rundreisen, Strandwoche, Flughafentransfer, Erlebnisse, Tagesausflüge, Planungshilfe), Preise, Verfügbarkeit, Bewertungen, Bestellnummern und Referenzen sind **Demo/fiktiv**. Zahlung ist ein **Stripe-Testmodus**: keine echte Zahlung, keine echten Kartendaten. Kein Reiseveranstalter-Status, keine Reisesicherungsschein-Aussagen, keine Rechtsberatung. Auch nicht behaupten, dass die Agentur Visa beantragt oder garantiert: nur Hinweise zum Beantragen über das offizielle Portal bzw. die Botschaft von Ghana in Berlin.
 
 ---
 ## 8. Zusätzlich für Erstreisende: Geld, SIM und Erreichbarkeit, Packen (Stand 21.11.2026)
