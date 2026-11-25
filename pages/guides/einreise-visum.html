@@ -2,9 +2,14 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
+<script src="../../js/lang.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ratgeber: Einreise und Visum für Ghana</title>
 <meta name="description" content="Pass, Visum, Gelbfieber-Nachweis und Gesundheitserklärung für die Einreise nach Ghana, in der richtigen Reihenfolge. Stand 21.11.2026, mit Quellen und Checkliste.">
+<link rel="alternate" hreflang="de" href="https://papa-travel.demo.orchestrate.ca/pages/guides/einreise-visum.html">
+<link rel="alternate" hreflang="en" href="https://papa-travel.demo.orchestrate.ca/en/pages/guides/einreise-visum.html">
+<link rel="alternate" hreflang="fr" href="https://papa-travel.demo.orchestrate.ca/fr/pages/guides/einreise-visum.html">
+<link rel="alternate" hreflang="x-default" href="https://papa-travel.demo.orchestrate.ca/pages/guides/einreise-visum.html">
 <style>@view-transition { navigation: auto; }</style>
 <link rel="stylesheet" href="../../css/tokens.css">
 <link rel="stylesheet" href="../../css/layout.css">
@@ -137,21 +142,34 @@
 </main>
 <script>
 (function () {
-  /* Checkliste: Haken bleiben im Browser (localStorage) */
+  var L = (document.documentElement.lang || 'de').slice(0, 2);
+  var TX = {
+    done: { de: ' erledigt', en: ' done', fr: ' faits' }, of: { de: ' von ', en: ' of ', fr: ' sur ' },
+    noShop: { de: 'Die Preise findest du unter Angebote.', en: 'You can find the prices under Offers.', fr: 'Vous trouverez les prix sous Offres.' },
+    loading: { de: 'Angebot wird geladen …', en: 'Loading the offer …', fr: 'Chargement de l’offre …' },
+    from: { de: ' ab ', en: ' from ', fr: ' à partir de ' },
+    pp: { de: ' pro Person', en: ' per person', fr: ' par personne' },
+    demo: { de: ' (Demo-Preis).', en: ' (demo price).', fr: ' (prix de démonstration).' },
+    added: { de: 'Der Unterlagen-Check liegt im Warenkorb. Zur Kasse geht es über den Warenkorb.', en: 'The document check is in your cart. Check out from the cart.', fr: 'Le contrôle des documents est dans votre panier. Passez à la caisse depuis le panier.' },
+    fail: { de: 'Das Angebot lässt sich gerade nicht laden. ', en: 'The offer cannot be loaded right now. ', fr: 'L’offre ne peut pas être chargée pour le moment. ' },
+    retry: { de: 'Noch einmal versuchen', en: 'Try again', fr: 'Réessayer' }
+  };
+  function t(k) { return TX[k][L] || TX[k].de; }
+  /* Checklist: ticks stay in this browser (localStorage), shared by all languages */
   var KEY = 'shop:papa-travel:einreise-visum-checkliste', boxes = [].slice.call(document.querySelectorAll('#gd-checks input')), out = document.getElementById('gd-progress'), state = {};
   try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
-  function show() { out.textContent = boxes.filter(function (b) { return b.checked; }).length + ' von ' + boxes.length + ' erledigt'; }
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* nur diese Sitzung */ } }
+  function show() { out.textContent = boxes.filter(function (b) { return b.checked; }).length + t('of') + boxes.length + t('done'); }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* this session only */ } }
   boxes.forEach(function (b) { b.checked = !!state[b.dataset.k]; b.addEventListener('change', function () { state[b.dataset.k] = b.checked; save(); show(); }); });
   document.getElementById('gd-reset').addEventListener('click', function () { state = {}; boxes.forEach(function (b) { b.checked = false; }); save(); show(); });
   show();
 
-  /* Passende Hilfe: Preis und Standard-Optionen kommen aus shop/catalog.json */
+  /* Matching help: price and default options come from shop/catalog.json */
   function init() {
     var S = window.Shop, btn = document.getElementById('gd-add'), price = document.getElementById('gd-price'), status = document.getElementById('gd-status');
-    if (!S) { price.textContent = 'Die Preise findest du unter Angebote.'; return; }
+    if (!S) { price.textContent = t('noShop'); return; }
     function load() {
-      price.textContent = 'Angebot wird geladen …';
+      price.textContent = t('loading');
       S.catalog().then(function (c) {
         var item = (c.items || []).filter(function (i) { return i.id === 'unterlagen-check'; })[0];
         if (!item) throw new Error('missing');
@@ -161,14 +179,14 @@
           var d = o.choices.filter(function (x) { return x.default; })[0] || o.choices[0];
           if (o.type === 'one') opts[k] = d.id;
         });
-        price.textContent = item.name + ' ab ' + S.money(item.price, c.currency) + (item.perPerson ? ' pro Person' : '') + ' (Demo-Preis).';
+        price.textContent = S.tx(item, 'name') + t('from') + S.money(item.price, c.currency) + (item.perPerson ? t('pp') : '') + t('demo');
         btn.disabled = false;
         btn.onclick = function () {
           S.addToCart({ item: item.id, qty: 1, options: opts });
-          status.textContent = 'Der Unterlagen-Check liegt im Warenkorb. Zur Kasse geht es über den Warenkorb.';
+          status.textContent = t('added');
         };
       }).catch(function () {
-        price.innerHTML = 'Das Angebot lässt sich gerade nicht laden. <button type="button" class="gd-reset" id="gd-retry">Noch einmal versuchen</button>';
+        price.innerHTML = t('fail') + '<button type="button" class="gd-reset" id="gd-retry">' + t('retry') + '</button>';
         document.getElementById('gd-retry').addEventListener('click', load);
       });
     }
