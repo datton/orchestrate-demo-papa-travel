@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script src="../../js/lang.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check out</title>
+<meta name="description" content="Review your booking and pay. Demo shop: test payments only.">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/shop/core.css">
+<link rel="stylesheet" href="../../css/shop/checkout.css">
+<script src="../../js/nav.js" defer></script>
+<script src="../../js/motion.js" defer></script>
+<script src="../../js/app.js" defer></script>
+<script src="../../js/shop/core.js" defer></script>
+<script src="../../js/shop/cart.js" defer></script>
+<script src="../../js/shop/checkout.js" defer></script>
+<link rel="alternate" hreflang="de" href="https://papa-travel.demo.orchestrate.ca/pages/checkout.html">
+<link rel="alternate" hreflang="en" href="https://papa-travel.demo.orchestrate.ca/en/pages/checkout.html">
+<link rel="alternate" hreflang="fr" href="https://papa-travel.demo.orchestrate.ca/fr/pages/checkout.html">
+<link rel="alternate" hreflang="x-default" href="https://papa-travel.demo.orchestrate.ca/pages/checkout.html">
+<style>@view-transition { navigation: auto; }</style>
+</head>
+<body>
+<main id="main">
+  <section class="band checkout">
+    <div class="checkout__wrap">
+      <h1 data-words>Check out</h1>
+      <p class="checkout__lead">Take another look at your booking, tell us where to send the confirmation, then pay at your own pace.</p>
+      <div id="co-banner" role="status" aria-live="polite"></div>
+      <div id="co-empty" class="shop-card checkout__empty" hidden>
+        <h2>Your cart is still empty</h2>
+        <p>Choose a package or a service first, then come back here.</p>
+        <a class="btn" href="services.html">See the offers</a>
+      </div>
+      <div class="checkout__grid" id="co-grid">
+        <form id="co-form" class="shop-card" novalidate>
+          <h2>Your details</h2>
+          <div class="shop-field">
+            <label for="co-name">Full name</label>
+            <input id="co-name" name="name" autocomplete="name" required maxlength="80">
+            <span class="shop-error" id="co-name-err" role="alert"></span>
+          </div>
+          <div class="shop-field">
+            <label for="co-email">Email for the confirmation</label>
+            <input id="co-email" name="email" type="email" autocomplete="email" required maxlength="120">
+            <span class="shop-error" id="co-email-err" role="alert"></span>
+          </div>
+          <div class="shop-field">
+            <label for="co-note">Requests or notes (optional)</label>
+            <textarea id="co-note" name="note" rows="3" maxlength="300"></textarea>
+          </div>
+
+          <h2>Coupon</h2>
+          <div class="shop-field">
+            <label for="co-coupon">Coupon</label>
+            <select id="co-coupon"><option value="best">Best coupon (automatic)</option><option value="">No coupon</option></select>
+            <span class="checkout__hint" id="co-coupon-hint"></span>
+          </div>
+
+          <div id="co-giftblock">
+          <h2>Travel credit</h2>
+          <div class="shop-field">
+            <label for="co-gift">Your travel credit code</label>
+            <div class="checkout__row">
+              <input id="co-gift" autocomplete="off" placeholder="Enter code (e.g. from “Pay now, travel later”)" maxlength="40">
+              <button type="button" class="btn btn--ghost" id="co-gift-apply">Apply</button>
+            </div>
+            <div id="co-wallet" class="checkout__chips"></div>
+            <span class="shop-error" id="co-gift-err" role="alert"></span>
+          </div>
+          </div>
+        </form>
+
+        <aside class="shop-card checkout__summary" aria-labelledby="co-sum-h">
+          <h2 id="co-sum-h">Your booking</h2>
+          <ul id="co-lines" class="checkout__lines"></ul>
+          <dl class="checkout__totals" id="co-totals"></dl>
+          <p class="shop-error" id="co-error" role="alert"></p>
+          <button type="button" class="btn btn--ghost" id="co-retry" hidden>Try again</button>
+          <button class="btn checkout__pay" id="co-pay" type="submit" form="co-form" disabled>Pay</button>
+          <p class="shop-testlabel">Demo shop: test payments only, no real money moves.</p>
+          <p class="checkout__hint">Test card 4242 4242 4242 4242, any future expiry date, any 3 digits.</p>
+          <a href="services.html" class="checkout__back">Keep browsing</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

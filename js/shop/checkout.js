@@ -6,16 +6,17 @@
   var state = { coupon: 'best', gift: '', quote: null, busy: false };
   var quoteSeq = 0;
 
-  // The service answers in English for some errors: show German on this site.
+  var T = S.t;
+  var GENERIC = { de: 'Das hat leider nicht geklappt. Bitte versuche es noch einmal.', en: 'That did not work. Please try again.', fr: 'Cela n’a pas fonctionné. Veuillez réessayer.' };
+  // The service answers in English or German for errors: show the visitor's language.
   function de(msg) {
     msg = String(msg || '');
-    if (/[äöüß]|\b(nicht|bitte|dein|deine|der|die|das|ein|eine)\b/i.test(msg)) return msg;   // already German
-    if (/gift ?card/i.test(msg)) return 'Diesen Code des Reiseguthabens kennen wir nicht, oder er hat kein Guthaben mehr.';
-    if (/coupon|promo/i.test(msg)) return 'Dieser Gutschein kann für diese Buchung nicht verwendet werden.';
-    if (/too many|slow down|rate/i.test(msg)) return 'Gerade sind zu viele Anfragen unterwegs. Bitte warte einen Moment.';
-    if (/empty|no items|nothing in/i.test(msg)) return 'Dein Warenkorb ist leer.';
-    if (/unavailable|sold out|not available/i.test(msg)) return 'Eines der Angebote ist gerade nicht verfügbar.';
-    return 'Das hat leider nicht geklappt. Bitte versuche es noch einmal.';
+    if (/gift ?card|guthaben/i.test(msg)) return T({ de: 'Diesen Code des Reiseguthabens kennen wir nicht, oder er hat kein Guthaben mehr.', en: 'We do not recognise this travel credit code, or it has no credit left.', fr: 'Nous ne reconnaissons pas ce code de crédit voyage, ou il n’a plus de solde.' });
+    if (/coupon|promo|gutschein/i.test(msg)) return T({ de: 'Dieser Gutschein kann für diese Buchung nicht verwendet werden.', en: 'This coupon cannot be used for this booking.', fr: 'Ce code promo ne peut pas être utilisé pour cette réservation.' });
+    if (/too many|slow down|rate|zu viele/i.test(msg)) return T({ de: 'Gerade sind zu viele Anfragen unterwegs. Bitte warte einen Moment.', en: 'Too many requests right now. Please wait a moment.', fr: 'Trop de demandes en ce moment. Veuillez patienter un instant.' });
+    if (/empty|no items|nothing in|leer/i.test(msg)) return T({ de: 'Dein Warenkorb ist leer.', en: 'Your cart is empty.', fr: 'Votre panier est vide.' });
+    if (/unavailable|sold out|not available|nicht verfügbar/i.test(msg)) return T({ de: 'Eines der Angebote ist gerade nicht verfügbar.', en: 'One of the offers is not available right now.', fr: 'L’une des offres n’est pas disponible pour le moment.' });
+    return T(GENERIC);
   }
 
   function init() {
@@ -43,7 +44,7 @@
     }
     var cancelled = S.param('cancelled');
     if (cancelled) {
-      $('co-banner').textContent = 'Die Zahlung wurde abgebrochen. Es wurde nichts abgebucht, dein Warenkorb ist noch da.';
+      $('co-banner').textContent = T({ de: 'Die Zahlung wurde abgebrochen. Es wurde nichts abgebucht, dein Warenkorb ist noch da.', en: 'The payment was cancelled. Nothing was charged and your cart is still here.', fr: 'Le paiement a été annulé. Rien n’a été débité et votre panier est toujours là.' });
       S.api('orders/' + encodeURIComponent(cancelled) + '/cancel', {}).catch(function () {});
       history.replaceState(null, '', location.pathname);
     }
@@ -56,7 +57,7 @@
     codes.forEach(function (c) {
       var b = document.createElement('button');
       b.type = 'button'; b.className = 'shop-chip';
-      b.textContent = (c === state.gift ? '✓ ' : '') + 'Guthaben ' + String(c).slice(-4);
+      b.textContent = (c === state.gift ? '✓ ' : '') + T({ de: 'Guthaben ', en: 'Credit ', fr: 'Crédit ' }) + String(c).slice(-4);
       b.setAttribute('aria-pressed', c === state.gift ? 'true' : 'false');
       b.addEventListener('click', function () { applyGift(c === state.gift ? '' : c); });
       host.appendChild(b);
@@ -70,8 +71,8 @@
     state.gift = code;
     refresh().then(function (ok) {
       var g = ok && state.quote && state.quote.giftCard;
-      if (code && g && !g.applied && !g.balanceAfter) { ok = false; state.lastError = 'Auf diesem Reiseguthaben ist nichts mehr übrig.'; }
-      if (!ok) { state.gift = prev; $('co-gift-err').textContent = state.lastError || 'Dieses Reiseguthaben kann nicht verwendet werden.'; refresh(); }
+      if (code && g && !g.applied && !g.balanceAfter) { ok = false; state.lastError = T({ de: 'Auf diesem Reiseguthaben ist nichts mehr übrig.', en: 'There is nothing left on this travel credit.', fr: 'Il ne reste rien sur ce crédit voyage.' }); }
+      if (!ok) { state.gift = prev; $('co-gift-err').textContent = state.lastError || T({ de: 'Dieses Reiseguthaben kann nicht verwendet werden.', en: 'This travel credit cannot be used.', fr: 'Ce crédit voyage ne peut pas être utilisé.' }); refresh(); }
       else { if (code) $('co-gift').value = ''; renderWallet(); }
     });
   }
@@ -101,32 +102,35 @@
 
   function render(q) {
     var cur = q.currency, m = function (c) { return S.money(c, cur); };
-    $('co-lines').innerHTML = q.lines.map(function (l) {
-      return '<li><span>' + S.esc(l.name) + ' × ' + l.qty + (l.summary ? '<small>' + S.esc(l.summary) + '</small>' : '') + '</span><span>' + m(l.total) + '</span></li>';
+    $('co-lines').innerHTML = q.lines.map(function (l, i) {
+      var nm = S.itemName(l.item, l.name), sm = l.summary;
+      // The service names the chosen options (also the defaults): show them in the visitor's language.
+      if (l.options && l.options.length) sm = l.options.map(function (o) { return S.choiceName(o.group, o.choice, o.name); }).join(', ');
+      return '<li><span>' + S.esc(nm) + ' × ' + l.qty + (sm ? '<small>' + S.esc(sm) + '</small>' : '') + '</span><span>' + m(l.total) + '</span></li>';
     }).join('');
-    var rows = ['<div><dt>Zwischensumme</dt><dd>' + m(q.subtotal) + '</dd></div>'];
-    if (q.discount) rows.push('<div class="is-saving"><dt>Gutschein ' + S.esc(q.discount.code) + '</dt><dd>−' + m(q.discount.amount) + '</dd></div>');
-    if (q.giftCard) rows.push('<div class="is-saving"><dt>Reiseguthaben ' + S.esc(q.giftCard.last4) + '</dt><dd>−' + m(q.giftCard.applied) + '</dd></div>');
-    if (q.giftCard) rows.push('<div><dt>Restguthaben danach</dt><dd>' + m(q.giftCard.balanceAfter) + '</dd></div>');
-    rows.push('<div class="is-total"><dt>Gesamt</dt><dd>' + m(q.total) + '</dd></div>');
+    var rows = ['<div><dt>' + T({ de: 'Zwischensumme', en: 'Subtotal', fr: 'Sous-total' }) + '</dt><dd>' + m(q.subtotal) + '</dd></div>'];
+    if (q.discount) rows.push('<div class="is-saving"><dt>' + T({ de: 'Gutschein ', en: 'Coupon ', fr: 'Code promo ' }) + S.esc(q.discount.code) + '</dt><dd>−' + m(q.discount.amount) + '</dd></div>');
+    if (q.giftCard) rows.push('<div class="is-saving"><dt>' + T({ de: 'Reiseguthaben ', en: 'Travel credit ', fr: 'Crédit voyage ' }) + S.esc(q.giftCard.last4) + '</dt><dd>−' + m(q.giftCard.applied) + '</dd></div>');
+    if (q.giftCard) rows.push('<div><dt>' + T({ de: 'Restguthaben danach', en: 'Credit left afterwards', fr: 'Solde restant après' }) + '</dt><dd>' + m(q.giftCard.balanceAfter) + '</dd></div>');
+    rows.push('<div class="is-total"><dt>' + T({ de: 'Gesamt', en: 'Total', fr: 'Total' }) + '</dt><dd>' + m(q.total) + '</dd></div>');
     $('co-totals').innerHTML = rows.join('');
     var sel = $('co-coupon'), usable = q.usable || [];
-    sel.innerHTML = '<option value="best">Bester Gutschein (automatisch)</option><option value="">Kein Gutschein</option>' +
-      usable.map(function (u) { return '<option value="' + S.esc(u.code) + '"' + (u.amount ? '' : ' disabled') + '>' + S.esc(u.code) + ' · ' + S.esc(u.name) + (u.amount ? ' (−' + m(u.amount) + ')' : '') + '</option>'; }).join('');
+    sel.innerHTML = '<option value="best">' + T({ de: 'Bester Gutschein (automatisch)', en: 'Best coupon (automatic)', fr: 'Meilleur code promo (automatique)' }) + '</option><option value="">' + T({ de: 'Kein Gutschein', en: 'No coupon', fr: 'Aucun code promo' }) + '</option>' +
+      usable.map(function (u) { return '<option value="' + S.esc(u.code) + '"' + (u.amount ? '' : ' disabled') + '>' + S.esc(u.code) + ' · ' + S.esc(S.couponName(u.code, u.name)) + (u.amount ? ' (−' + m(u.amount) + ')' : '') + '</option>'; }).join('');
     sel.value = state.coupon;
     var hint = '';
-    if (state.coupon === 'best') hint = q.discount ? 'Der beste Gutschein ist angewendet: ' + q.discount.name + '.' : 'Für diese Buchung gilt kein Gutschein.';
-    else if (state.coupon) { var u = usable.filter(function (x) { return x.code === state.coupon; })[0]; hint = u && u.why ? u.why : ''; }
+    if (state.coupon === 'best') hint = q.discount ? T({ de: 'Der beste Gutschein ist angewendet: ', en: 'The best coupon is applied: ', fr: 'Le meilleur code promo est appliqué : ' }) + S.couponName(q.discount.code, q.discount.name) + '.' : T({ de: 'Für diese Buchung gilt kein Gutschein.', en: 'No coupon applies to this booking.', fr: 'Aucun code promo ne s’applique à cette réservation.' });
+    else if (state.coupon) { var u = usable.filter(function (x) { return x.code === state.coupon; })[0]; hint = u && u.why ? (S.LANG === 'de' ? u.why : '') : ''; }
     $('co-coupon-hint').textContent = hint;
-    $('co-pay').textContent = q.total > 0 ? 'Bezahlen: ' + m(q.total) : 'Buchung abschließen';
+    $('co-pay').textContent = q.total > 0 ? T({ de: 'Bezahlen: ', en: 'Pay ', fr: 'Payer ' }) + m(q.total) : T({ de: 'Buchung abschließen', en: 'Complete booking', fr: 'Finaliser la réservation' });
     $('co-pay').disabled = false;
   }
 
   function validate() {
     var ok = true, name = $('co-name').value.trim(), email = $('co-email').value.trim();
-    $('co-name-err').textContent = name ? '' : 'Bitte gib deinen Namen ein.';
+    $('co-name-err').textContent = name ? '' : T({ de: 'Bitte gib deinen Namen ein.', en: 'Please enter your name.', fr: 'Veuillez saisir votre nom.' });
     var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-    $('co-email-err').textContent = emailOk ? '' : 'Bitte gib eine gültige E-Mail-Adresse ein.';
+    $('co-email-err').textContent = emailOk ? '' : T({ de: 'Bitte gib eine gültige E-Mail-Adresse ein.', en: 'Please enter a valid email address.', fr: 'Veuillez saisir une adresse e-mail valide.' });
     if (!name) { $('co-name').focus(); ok = false; }
     else if (!emailOk) { $('co-email').focus(); ok = false; }
     return ok;
@@ -144,7 +148,7 @@
       var st = S.get('store', null) || (c.stores && c.stores[0] && c.stores[0].id);
       if (st) b.store = st;
     }).catch(function () {}).then(function () {
-      state.busy = true; $('co-pay').disabled = true; $('co-pay').textContent = 'Einen Moment …';
+      state.busy = true; $('co-pay').disabled = true; $('co-pay').textContent = T({ de: 'Einen Moment …', en: 'One moment …', fr: 'Un instant …' });
       return S.api('orders', b);
     }).then(function (r) {
       S.addOrder(r.order.token);
