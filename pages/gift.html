@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guthaben prüfen</title>
+<meta name="description" content="Gib den Code deines Reiseguthabens ein und sieh das Restguthaben. Demo-Shop: nur Testzahlungen.">
+<style>@view-transition { navigation: auto; }</style>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/site.css">
+<link rel="stylesheet" href="../css/shop/core.css">
+<link rel="stylesheet" href="../css/shop/gifts.css">
+<script src="../js/nav.js" defer></script>
+<script src="../js/motion.js" defer></script>
+<script src="../js/app.js" defer></script>
+<script src="../js/shop/core.js" defer></script>
+<script src="../js/shop/cart.js" defer></script>
+<script src="../js/shop/gifts.js" defer></script>
+</head>
+<body data-gifts="view">
+<main id="main">
+  <section class="band gf-hero">
+    <p class="gf-eyebrow" data-reveal>Reiseguthaben <span class="demo-label">Demo: fiktive Agentur Papa Travel</span></p>
+    <h1 data-words>Wie viel Guthaben ist noch drauf?</h1>
+    <p class="gf-lead" data-reveal>Gib den Code ein und du siehst das Restguthaben. Das Guthaben zahlst du an der Kasse ein: Was nicht gebraucht wird, bleibt auf dem Code.</p>
+  </section>
+
+  <section class="band band--dark gf-sec" aria-labelledby="h-look">
+    <h2 id="h-look">Code eingeben</h2>
+    <form class="gf-card gf-lookup" id="gf-lookup" novalidate>
+      <div class="gf-field"><label for="gf-code">Code des Reiseguthabens</label><input id="gf-code" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+      <button type="submit" class="gf-btn gf-btn--solid">Guthaben prüfen</button>
+    </form>
+    <p class="gf-error" id="gf-error" role="alert" hidden></p>
+    <div id="gf-status" class="gf-status" role="status" aria-live="polite"></div>
+    <div id="gf-result" class="gf-result" hidden></div>
+    <p class="gf-links"><a class="gf-btn" href="gift-cards.html">Reiseguthaben kaufen</a> <a class="gf-btn" href="services.html">Zu den Angeboten</a></p>
+  </section>
+
+  <section class="band gf-end">
+    <p class="guide-note" data-reveal>Allgemeine Informationen, keine Rechts- oder Einreiseberatung. Regeln bitte vor der Reise bei den offiziellen Stellen prüfen. Demo-Shop: nur Testzahlungen, es bewegt sich kein echtes Geld.</p>
+  </section>
+</main>
+</body>
+</html>

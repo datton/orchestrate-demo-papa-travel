@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reiseguthaben: jetzt zahlen, später reisen</title>
+<meta name="description" content="Kaufe Reiseguthaben für Papa Travel: Betrag und Gestaltung wählen, bezahlen (Demo, nur Testzahlung) und den Code erhalten. Das Guthaben gilt für jedes Angebot an der Kasse.">
+<style>@view-transition { navigation: auto; }</style>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/site.css">
+<link rel="stylesheet" href="../css/shop/core.css">
+<link rel="stylesheet" href="../css/shop/gifts.css">
+<script src="../js/nav.js" defer></script>
+<script src="../js/motion.js" defer></script>
+<script src="../js/app.js" defer></script>
+<script src="../js/shop/core.js" defer></script>
+<script src="../js/shop/cart.js" defer></script>
+<script src="../js/shop/gifts.js" defer></script>
+</head>
+<body data-gifts="buy">
+<main id="main">
+  <section class="band gf-hero">
+    <p class="gf-eyebrow" data-reveal>Reiseguthaben <span class="demo-label">Demo: fiktive Agentur Papa Travel</span></p>
+    <h1 data-words>Reiseguthaben: jetzt zahlen, später reisen.</h1>
+    <p class="gf-lead" data-reveal>Du kaufst heute ein Guthaben und löst es später ein: für dich oder zum Verschenken. Du bekommst einen Code, den du an der Kasse eingibst.</p>
+  </section>
+
+  <section class="band gf-sec" aria-labelledby="h-how">
+    <h2 id="h-how" data-reveal>So funktioniert es.</h2>
+    <ol class="gf-steps">
+      <li data-reveal><strong>1. Betrag wählen.</strong> Das Guthaben deckt jedes Paket und jede Leistung an der Kasse.</li>
+      <li data-reveal><strong>2. Bezahlen.</strong> Auf der Testzahlungsseite des Shops. Es bewegt sich kein echtes Geld.</li>
+      <li data-reveal><strong>3. Code einlösen.</strong> An der Kasse eingeben. Ist die Buchung günstiger als das Guthaben, bleibt der Rest auf dem Code.</li>
+    </ol>
+  </section>
+
+  <section class="band band--dark gf-sec" id="kaufen" aria-labelledby="h-buy">
+    <h2 id="h-buy">Dein Reiseguthaben</h2>
+    <div id="gf-status" class="gf-status" role="status" aria-live="polite"></div>
+    <div id="gf-result" class="gf-result" hidden></div>
+    <div class="gf-wrap" id="gf-buy">
+      <form class="gf-card gf-form" id="gf-form" novalidate hidden>
+        <fieldset class="gf-fs"><legend>Betrag</legend><div class="gf-amounts" id="gf-amounts"></div>
+          <div class="gf-field"><label for="gf-custom">Anderer Betrag in Euro <span class="gf-hint" id="gf-range"></span></label>
+          <input id="gf-custom" inputmode="numeric" autocomplete="off"></div></fieldset>
+        <fieldset class="gf-fs"><legend>Gestaltung</legend><div class="gf-designs" id="gf-designs"></div></fieldset>
+        <div class="gf-field"><label for="gf-to">Für <span class="gf-hint">(Name)</span></label><input id="gf-to" maxlength="60" autocomplete="off" required></div>
+        <div class="gf-field"><label for="gf-from">Von <span class="gf-hint">(Name)</span></label><input id="gf-from" maxlength="60" autocomplete="name" required></div>
+        <div class="gf-field"><label for="gf-msg">Nachricht <span class="gf-hint">(optional)</span></label><textarea id="gf-msg" rows="3" maxlength="240"></textarea></div>
+        <p class="gf-error" id="gf-error" role="alert" hidden></p>
+        <button type="submit" class="gf-btn gf-btn--solid" id="gf-pay">Weiter zur Testzahlung</button>
+        <p class="gf-test">Demo-Shop: nur Testzahlungen, es bewegt sich kein echtes Geld.</p>
+      </form>
+      <div class="gf-card gf-preview" id="gf-preview" aria-live="polite" hidden></div>
+    </div>
+    <div id="gf-load" class="gf-load" role="status">Das Angebot wird geladen …</div>
+    <noscript><p>Für den Kauf von Reiseguthaben brauchst du JavaScript.</p></noscript>
+    <p class="gf-links"><a class="gf-btn" href="gift.html">Guthaben eines Codes prüfen</a> <a class="gf-btn" href="services.html">Zu den Angeboten</a></p>
+  </section>
+
+  <section class="band gf-end">
+    <p class="guide-note" data-reveal>Allgemeine Informationen, keine Rechts- oder Einreiseberatung. Regeln bitte vor der Reise bei den offiziellen Stellen prüfen. Papa Travel ist eine fiktive Demo-Agentur, das Guthaben hat keinen echten Wert.</p>
+  </section>
+</main>
+</body>
+</html>
