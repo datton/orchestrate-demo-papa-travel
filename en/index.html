@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script src="../js/lang.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ghana Vorab: pay now, fly later (demo)</title>
+<meta name="description" content="Fictional demo agency for people travelling to Ghana: packages, services, prepaid travel credit and guides. Demo: test payments only, no real money.">
+<link rel="alternate" hreflang="de" href="https://papa-travel.demo.orchestrate.ca/index.html">
+<link rel="alternate" hreflang="en" href="https://papa-travel.demo.orchestrate.ca/en/index.html">
+<link rel="alternate" hreflang="fr" href="https://papa-travel.demo.orchestrate.ca/fr/index.html">
+<link rel="alternate" hreflang="x-default" href="https://papa-travel.demo.orchestrate.ca/index.html">
+<style>@view-transition { navigation: auto; }</style>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/site.css">
+<link rel="stylesheet" href="../css/shop/core.css">
+<link rel="stylesheet" href="../css/shop/cart.css">
+<style>
+.h-hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:6rem var(--gutter) 4rem;background:radial-gradient(48rem 24rem at 95% 8%,color-mix(in srgb,var(--sun) 55%,transparent),transparent 70%),radial-gradient(40rem 22rem at 0% 100%,color-mix(in srgb,var(--ocean) 28%,transparent),transparent 70%),var(--bg)}
+.h-hero h1{font-family:var(--font-display);font-size:min(var(--fs-h1),11.2vw);overflow-wrap:break-word;line-height:var(--lh-tight);letter-spacing:var(--track-display);margin:0 0 1.5rem;max-width:14ch}
+.h-hero .lead{font-size:var(--fs-lg);max-width:56ch;margin:0 0 2rem}
+.kin{background:linear-gradient(90deg,#19e3c9,#6aa5ff,#ff5fa8,#6aa5ff,#19e3c9);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:h-sweep 7s linear infinite}
+@keyframes h-sweep{to{background-position:-200% 0}}
+.h-tag{display:inline-block;align-self:flex-start;padding:.3rem .9rem;border:var(--border);border-radius:var(--radius-pill);background:var(--sun);color:var(--on-accent);font-weight:800;font-size:.85rem;margin-bottom:1.2rem;box-shadow:var(--shadow-sm)}
+.h-btn{display:inline-flex;align-items:center;min-height:48px;padding:.75rem 1.6rem;border:var(--border);border-radius:var(--radius-pill);background:var(--accent);color:var(--on-accent);font:inherit;font-weight:800;text-decoration:none;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.h-btn:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow)}
+.h-btn.h-btn--ghost{background:var(--surface-2);color:#fff;border-color:var(--accent);margin-left:.75rem}
+.h-big{font-family:var(--font-display);font-size:var(--fs-h2);line-height:var(--lh-tight);letter-spacing:var(--track-h2);margin:0 0 1.5rem;max-width:20ch}
+.h-marq{overflow:hidden;white-space:nowrap}.h-marq span{display:inline-block;font-family:var(--font-display);font-size:var(--fs-giant);font-weight:800;letter-spacing:var(--track-display);padding-right:2rem;background:var(--gradient-text-dark);-webkit-background-clip:text;background-clip:text;color:transparent}
+.h-state{font-family:var(--font-display);font-size:clamp(1.8rem,4.4vw,3.4rem);line-height:var(--lh-snug);max-width:28ch;margin:0}
+.h-note{font-size:.9rem;color:var(--text-muted);max-width:65ch}
+.band--dark .h-note{color:var(--on-dark-muted)}
+.h-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1.5rem;margin:0;padding:0;list-style:none}
+.h-card{display:flex;flex-direction:column;gap:.5rem;padding:1.5rem;border:var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);box-shadow:var(--shadow);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.h-card:hover{transform:translate(-3px,-3px);box-shadow:var(--shadow-lg)}
+.h-card:nth-child(4n+1){background:var(--surface-2)}
+.h-card h3{margin:0;font-family:var(--font-display);font-size:1.4rem}.h-card p{margin:0}
+.h-price{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-top:auto}.h-price small{font-family:var(--font-sans);font-size:.9rem;font-weight:500;color:var(--text-muted)}
+.h-card a.more{font-weight:800}
+.h-steps{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:start}
+.h-steps [data-step-word]{position:sticky;top:20vh;font-family:var(--font-display);font-size:min(var(--fs-giant),10.5vw);overflow-wrap:normal;font-weight:800;letter-spacing:var(--track-display);line-height:1;background:var(--gradient-text-dark);-webkit-background-clip:text;background-clip:text;color:transparent}
+.h-steps .step{min-height:60vh;display:flex;align-items:center;font-family:var(--font-display);font-size:var(--fs-step);line-height:var(--lh-snug);max-width:22ch}
+@media(max-width:64rem){.h-steps{grid-template-columns:minmax(0,1fr);gap:1.5rem}.h-steps [data-step-word]{font-size:min(var(--fs-giant),13vw);position:static}.h-steps .step{min-height:auto;padding-block:1.5rem}.h-btn--ghost{margin:.75rem 0 0}}
+.h-why{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:1.5rem;margin:0;padding:0;list-style:none}
+.h-why li{padding:1.5rem;border:2px solid var(--on-dark);border-radius:var(--radius);background:var(--dark-2);color:var(--on-dark);box-shadow:5px 5px 0 var(--sun)}
+.h-why h3{margin:0 0 .5rem;font-family:var(--font-display);font-size:1.3rem}.h-why p{margin:0}
+.h-nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:2rem}
+.h-nums b{display:block;font-family:var(--font-display);font-size:clamp(3rem,8vw,6rem);letter-spacing:var(--track-display);line-height:1}
+.h-tool{background:var(--surface);color:var(--text);border:var(--border);border-radius:var(--radius-lg);padding:clamp(1.25rem,3vw,2.2rem);box-shadow:var(--shadow)}
+.h-tool fieldset{border:0;padding:0;margin:0 0 1.2rem}.h-tool legend{font-weight:800;margin-bottom:.5rem}
+.h-tool label{display:flex;gap:.6rem;align-items:center;min-height:44px;cursor:pointer}
+.h-tool input[type=radio]{width:1.2rem;height:1.2rem;accent-color:var(--accent)}
+.h-tool input[type=range]{width:100%;accent-color:var(--accent);min-height:44px}
+.h-tool input[type=range]{-webkit-appearance:none;appearance:none;background:transparent;cursor:pointer}
+.h-tool input[type=range]::-webkit-slider-runnable-track{box-sizing:content-box;height:.7rem;border-radius:999px;background:var(--surface-2);border:2px solid var(--field-line,#6674b4)}
+.h-tool input[type=range]::-moz-range-track{height:.7rem;border-radius:999px;background:var(--surface-2);border:2px solid var(--field-line,#6674b4)}
+.h-tool input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:1.6rem;height:1.6rem;margin-top:calc((.7rem + 4px - 1.6rem) / 2);border-radius:50%;background:var(--accent);border:2px solid var(--on-accent)}
+.h-tool input[type=range]::-moz-range-thumb{width:1.6rem;height:1.6rem;border-radius:50%;background:var(--accent);border:2px solid var(--on-accent)}
+.h-tool select{width:100%;min-height:44px;padding:.5rem .8rem;border:var(--border);border-radius:.7rem;font:inherit;background:#fff;color:#111}
+.h-out{margin-top:1.2rem;font-weight:600}.h-out ul{margin:.6rem 0 0;padding-left:1.2rem;font-weight:400}.h-out li{margin:.3rem 0}
+.h-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:2rem;align-items:start}
+.h-ticket{position:relative;border:var(--border);border-radius:var(--radius-lg);background:linear-gradient(135deg,var(--sun),#ff9a3c);color:#16130f;padding:clamp(1.5rem,3vw,2.5rem);box-shadow:var(--shadow);margin-bottom:1.2rem}
+.h-ticket{container-type:inline-size}
+.h-ticket small{display:block;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
+.h-ticket b{display:block;font-family:var(--font-display);font-size:clamp(2.2rem,8vw,5rem);letter-spacing:var(--track-display);line-height:1;margin:.3rem 0}
+.h-ticket span{font-weight:600}
+@supports(width:1cqw){.h-ticket b{font-size:min(5rem,17cqw)}}
+@media(prefers-reduced-motion:reduce){.kin{animation:none}}
+</style>
+<script src="../js/shop/core.js" defer></script>
+<script src="../js/shop/cart.js" defer></script>
+<script src="../js/nav.js" defer></script>
+<script src="../js/motion.js" defer></script>
+<script src="../js/app.js" defer></script>
+</head>
+<body>
+<main id="main">
+
+<section class="h-hero" id="top">
+  <span class="h-tag">Fictional demo agency: test payments only, no real money</span>
+  <h1 data-words>Pay now. <span class="kin">Fly later.</span></h1>
+  <p class="lead" data-reveal>Ghana Vorab sells travel packages, services and travel credit that you buy today and redeem later for your trip to Ghana. With fixed prices and sources in the guides.</p>
+  <p data-reveal><a class="h-btn" href="pages/gift-cards.html">Buy travel credit</a><a class="h-btn h-btn--ghost" href="pages/services.html#packages">See packages</a></p>
+</section>
+
+<section class="band band--dark" aria-label="What to expect">
+  <div class="h-marq" data-marquee aria-hidden="true"><span>Ghana · Packages · Credit · Transfer · Guides · Ghana · Packages · Credit · Transfer · Guides · </span></div>
+</section>
+
+<section class="band" id="hilfe" aria-labelledby="h-h">
+  <h2 class="h-big" id="h-h" data-words>How we help you</h2>
+  <ul class="h-cards">
+    <li class="h-card" data-reveal><h3>Packages</h3><p>Three ready-planned trips to Ghana with accommodation, pickup and a travel plan in one price.</p><a class="more" href="pages/services.html#packages">See the packages</a></li>
+    <li class="h-card" data-reveal><h3>Travel credit</h3><p>Pay today, redeem later: a code with credit that covers packages and services.</p><a class="more" href="pages/gift-cards.html">See the credit</a></li>
+    <li class="h-card" data-reveal><h3>Services</h3><p>Pickup in Accra, trip planning and a document check, bookable on their own.</p><a class="more" href="pages/services.html#services">See the services</a></li>
+    <li class="h-card" data-reveal><h3>Guides</h3><p>Entry, getting there and when to go, with the source and an as-of date.</p><a class="more" href="#guides">See the guides</a></li>
+  </ul>
+</section>
+
+<section class="band band--dark">
+  <p class="h-state" data-fill>Months can pass between payment and travel. That is why we say that rules change, and where you can read them officially.</p>
+</section>
+
+<section class="band" id="angebote" aria-labelledby="a-h">
+  <h2 class="h-big" id="a-h" data-words>Packages and services</h2>
+  <ul class="h-cards" id="service-cards" aria-live="polite">
+    <li class="h-card"><h3>Our offers</h3><p>All packages, services and guides with prices are on the offers page.</p><a class="more" href="pages/services.html">See the offers</a></li>
+  </ul>
+  <p class="h-note" style="margin-top:1.5rem" data-reveal>Ghana Vorab, the packages and the prices are made up (demo). Prices in euros. Demo shop: test payments only, no real money moves.</p>
+  <p data-reveal><a class="h-btn" href="pages/services.html">See all offers</a></p>
+</section>
+
+<section class="band band--dark" id="ablauf">
+  <div class="h-steps" data-sticky-steps>
+    <div data-step-word aria-hidden="true">Buy</div>
+    <div>
+      <div class="step" data-step="Buy">Buy travel credit in your amount, with a test payment.</div>
+      <div class="step" data-step="Code">You get a code with credit. It is yours.</div>
+      <div class="step" data-step="Plan">Later, choose a package or a service and enter the code at checkout.</div>
+      <div class="step" data-step="Travel">Any remainder stays on the code. Check your documents officially first, then go.</div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="helfer" aria-labelledby="t-h">
+  <h2 class="h-big" id="t-h" data-words>What does my credit cover?</h2>
+  <div class="h-two">
+    <form class="h-tool" id="credit" novalidate data-reveal aria-labelledby="c-h">
+      <h3 id="c-h" style="margin-top:0;font-family:var(--font-display)">Credit calculator</h3>
+      <div class="h-ticket"><small>Travel credit, demo</small><b id="c-amount">250 €</b><span id="c-sub"></span></div>
+      <label for="c-range" style="font-weight:800;display:block">Choose an amount</label>
+      <input type="range" id="c-range" name="amt" min="50" max="500" step="10" value="250">
+      <p class="h-note" id="c-limits"></p>
+      <div class="h-out" id="c-out" role="status" aria-live="polite"></div>
+      <p><a class="h-btn" href="pages/gift-cards.html">Buy credit</a></p>
+    </form>
+    <form class="h-tool" id="pkg" novalidate data-reveal aria-labelledby="p-h">
+      <h3 id="p-h" style="margin-top:0;font-family:var(--font-display)">Which package suits you?</h3>
+      <fieldset><legend>Who are you travelling with?</legend>
+        <label><input type="radio" name="who" value="solo" checked> Alone, and I want everything sorted</label>
+        <label><input type="radio" name="who" value="two"> As a pair or with friends, we plan together</label>
+      </fieldset>
+      <fieldset><legend>How do you like to travel?</legend>
+        <label><input type="radio" name="how" value="base" checked> Arrive and set off from one place</label>
+        <label><input type="radio" name="how" value="tour"> Several stops, a round trip</label>
+      </fieldset>
+      <button class="h-btn" type="submit">Show a suggestion</button>
+      <div class="h-out" id="pkg-out" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+  <p class="h-note" style="margin-top:1.5rem">A guide figure from the prices on the offers list, without options such as room type. The binding price is in the cart. Prepaid does not secure entry: visa, vaccinations and health declaration remain the traveller's responsibility. Please check the rules again before you travel.</p>
+</section>
+
+<section class="band band--dark" id="vertrauen" aria-labelledby="v-h">
+  <h2 class="h-big" id="v-h" data-words>Why Ghana Vorab</h2>
+  <ul class="h-why">
+    <li data-reveal><h3>With sources</h3><p>Statements in the guides name their source and the as-of date.</p></li>
+    <li data-reveal><h3>Clear prices</h3><p>The price you see is the price at checkout. It comes from our offers list.</p></li>
+    <li data-reveal><h3>Honest about limits</h3><p>General information, not legal or immigration advice. Where something is uncertain, we say so.</p></li>
+    <li data-reveal><h3>Ready at once</h3><p>After the test payment, your order is right there under My purchases.</p></li>
+  </ul>
+  <div class="h-nums" style="margin-top:4rem">
+    <div data-reveal><b data-count="3">3</b>Packages to start with</div>
+    <div data-reveal><b data-count="3">3</b>Services bookable on their own</div>
+    <div data-reveal><b data-count="3">3</b>Guides with sources</div>
+  </div>
+</section>
+
+<section class="band" id="guides" aria-labelledby="g-h">
+  <h2 class="h-big" id="g-h" data-words>The way into the guides</h2>
+  <p class="prose" data-reveal>Three guides take you through the preparation: entry and visa, getting there and arriving, when to go and health. You buy them on the offers page and read them afterwards under My purchases.</p>
+  <ul class="h-cards" id="guide-cards"></ul>
+  <p style="margin-top:1.5rem" data-reveal><a class="h-btn" href="pages/account.html">My purchases</a><a class="h-btn h-btn--ghost" href="pages/services.html#guides">Buy guides</a></p>
+  <p class="guide-note" style="margin-top:2.5rem" data-reveal>General information, not legal or immigration advice. Please check the rules with the official authorities before you travel. Ghana Vorab is a made-up demo agency.</p>
+</section>
+
+</main>
+</body>
+</html>
