@@ -22,3 +22,33 @@ Each guide item in the catalog has a `guide` field with the page path. A guide p
 
 ## Prepaid (pay now, travel later)
 Ghana Vorab sells **Reiseguthaben**: a prepaid credit bought now (the shop service's gift cards: `giftCards` in `shop/catalog.json`, `POST giftcards`, a code with a balance). The code is entered at checkout (`giftCard` in quote and order) and covers any package or service later; any remainder stays on the code. Prepaid amounts and any bonus are fictional and labelled demo. Look: fresh and vivid, not the look of papa-reisen (which stays unchanged).
+
+## Languages: German (default), English, French
+Structure: **full static copies per language**. German stays at the root (`index.html`, `pages/...`), English is `en/index.html`, `en/pages/...`, French `fr/index.html`, `fr/pages/...`: same file names, same anchors and ids, `<html lang="de|en|fr">`. Each page owner makes the `en/` and `fr/` copies of their own pages (the files stay in their lane). Shared CSS and JS live once at the root; a copy in `en/pages/x.html` links `../../../css/...` and `../../../js/...`.
+- **`js/lang.js`** (mine): first in `<head>`, not deferred. Remembers the choice (`shop:papa-travel:lang`) and sends the visitor to the same page in their language. The payment service returns to the German `pages/order.html` and `pages/gift-cards.html`; lang.js moves the visitor to their language, query string kept. `window.SiteLang` = `{current, langs, names, urlFor(lang), set(lang)}` for the switcher.
+- **Switcher** (`js/nav.js`, UI/UX): in the header, keyboard usable (a group of three links `DE EN FR` with `lang` and `hreflang` attributes, current one `aria-current="true"`), calls `SiteLang.set(l)` on click, links to `SiteLang.urlFor(l)`. nav.js and the footer texts per language.
+- **hreflang**: in every page's head, absolute URLs on the live address, for de, en, fr and `x-default` (= German): `<link rel="alternate" hreflang="en" href="https://papa-travel.demo.orchestrate.ca/en/pages/services.html">`.
+- **JS strings**: `Shop.LANG` (`de|en|fr`), `Shop.t({de:'…', en:'…', fr:'…'})` for any text a script writes (German is the fallback). `Shop.url('pages/x.html')` returns the page in the visitor's language; files (css, js, json) always come from the root. `Shop.TEST_LABEL` is per language. `Shop.money` formats by `<html lang>`.
+- **Catalog** (`shop/catalog.json`): the German fields stay; every text gets `"i18n": {"en": {...}, "fr": {...}}` with the same field names (`name`, `desc`, `includes`, `badge`, `blurb`, `line`) on items, option groups, option choices, categories, coupons and gift-card designs. Prices, ids and rules are shared and identical. The shop service answers in German (line names, option summaries, coupon names): pages show the catalog text instead (`Shop.tx(obj,'name')`, `Shop.itemName(id, fallback)`, `Shop.choiceName(group, choice, fallback)`, `Shop.couponName(code, fallback)`, `Shop.lineSummary(line, fallback)`). The service's own test payment page is outside the site and stays as it is.
+- **Facts**: guides are translated from `content/facts.md` only: same figures, same "Stand" dates, same sources, nothing added. "bitte bei Botschaft/Quelle prüfen" becomes "please check with the embassy/source" / « à vérifier auprès de l’ambassade ou de la source ». The footer sentence: EN "General information, not legal or immigration advice. Please check the rules with the official authorities before you travel." FR « Informations générales, pas de conseil juridique ni en matière d’immigration. Vérifiez les règles auprès des autorités officielles avant le voyage. » Test-money label in all pages: `Shop.TEST_LABEL` text. No safety promises in any language.
+- **Tone**: German "du", English plain "you", French "vous". Natural, not word for word.
+- **Names** (identical everywhere): Ghana Vorab, Accra International Airport, Kokrobite, Cedi, ELEFAND, PAPA15.
+
+| de | en | fr |
+|---|---|---|
+| Pakete | Packages | Forfaits |
+| Services | Services | Services |
+| Ratgeber | Guides | Guides |
+| Reiseguthaben | Travel credit | Crédit voyage |
+| Meine Käufe | My purchases | Mes achats |
+| Warenkorb | Cart | Panier |
+| Zur Kasse | Check out | Passer à la caisse |
+| Bestellung | Order | Commande |
+| Gutschein / Code | Coupon / code | Code promo / code |
+| Demo-Agentur (fiktiv) | demo agency (fictional) | agence de démonstration (fictive) |
+| Stand | As of | État au |
+| Einreise und Visum | Entry and visa | Entrée et visa |
+| Anreise und Ankunft | Getting there and arriving | Voyage et arrivée |
+| Reisezeit, Gesundheit und Packen | When to go, health and packing | Quand partir, santé et bagages |
+
+Parity rule: the three copies of a page have the same sections, ids, anchors, links and numbers; QA compares them.

@@ -6,6 +6,17 @@
   var API = ROOT + 'api/shop/';
   var SITE = (ROOT.match(/\/s\/([^\/]+)\/$/) || [])[1] || location.hostname.split('.')[0] || 'site';
   var PREFIX = 'shop:' + SITE + ':';
+  // Language: German at the site root (default), English in /en/, French in /fr/. The page's <html lang> decides.
+  var LANG = ((document.documentElement.lang || 'de').slice(0, 2)).toLowerCase();
+  if (LANG !== 'en' && LANG !== 'fr') LANG = 'de';
+  // Shop.t({de: '...', en: '...', fr: '...'}) returns the text for the current language (German when one is missing).
+  function t(strings) { return strings && (strings[LANG] != null ? strings[LANG] : strings.de); }
+  // Shop.tx(obj, 'name'): obj.i18n[LANG][field] when the catalog has it, else obj[field] (German).
+  function tx(obj, field) {
+    if (!obj) return '';
+    var l = obj.i18n && obj.i18n[LANG];
+    return (l && l[field] != null) ? l[field] : obj[field];
+  }
   // The cart drawer needs css/shop/cart.css on every page; load it here when the page does not link it.
   (function () {
     try {
@@ -43,7 +54,7 @@
     var opts = body === undefined ? {} : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) };
     return fetch(API + path, opts).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (data) {
-        if (!r.ok || data.error) throw new Error(data.error || 'Etwas ist schiefgelaufen. Bitte versuche es noch einmal.');
+        if (!r.ok || data.error) throw new Error(data.error || t({ de: 'Etwas ist schiefgelaufen. Bitte versuche es noch einmal.', en: 'Something went wrong. Please try again.', fr: 'Un problème est survenu. Merci de réessayer.' }));
         return data;
       });
     });
@@ -53,7 +64,7 @@
   function loadCatalog() {
     if (!catalogPromise) {
       catalogPromise = fetch(ROOT + 'shop/catalog.json', { cache: 'no-cache' }).then(function (r) {
-        if (!r.ok) throw new Error('Das Angebot konnte nicht geladen werden.');
+        if (!r.ok) throw new Error(t({ de: 'Das Angebot konnte nicht geladen werden.', en: 'The offers could not be loaded.', fr: 'Les offres n’ont pas pu être chargées.' }));
         return r.json();
       }).catch(function (e) { catalogPromise = null; throw e; });  // a failed load must not be cached: retry fetches again
     }
@@ -66,8 +77,31 @@
     try { return new Intl.NumberFormat(document.documentElement.lang || 'de', { style: 'currency', currency: cur }).format(cents / 100); }
     catch (e) { return (cents / 100).toFixed(2) + ' ' + cur; }
   }
-  var byId = {};
-  loadCatalog().then(function (c) { if (c && c.currency) currency = c.currency; ((c && c.items) || []).forEach(function (it) { byId[it.id] = it; }); }).catch(function () {});
+  var byId = {}, lastCat = null;
+  loadCatalog().then(function (c) { lastCat = c; if (c && c.currency) currency = c.currency; ((c && c.items) || []).forEach(function (it) { byId[it.id] = it; }); }).catch(function () {});
+  // The shop service answers in German (names, option summaries, coupon names). Show the visitor's language from the
+  // catalog instead: itemName(id, fallback), choiceName(groupId, choiceId, fallback), couponName(code, fallback).
+  function itemName(id, fb) { return byId[id] ? tx(byId[id], 'name') : fb; }
+  function choiceName(group, choice, fb) {
+    var g = lastCat && lastCat.options && lastCat.options[group];
+    var c = g && (g.choices || []).filter(function (x) { return x.id === choice; })[0];
+    return c ? tx(c, 'name') : fb;
+  }
+  function groupName(group, fb) { var g = lastCat && lastCat.options && lastCat.options[group]; return g ? tx(g, 'name') : fb; }
+  function couponName(code, fb) {
+    var c = lastCat && (lastCat.coupons || []).filter(function (x) { return x.code === code; })[0];
+    return c ? tx(c, 'name') : fb;
+  }
+  // Option summary for a cart line ({item, options: {group: choiceId}}) in the visitor's language, or fb.
+  function lineSummary(line, fb) {
+    var o = line && line.options, parts = [];
+    if (!o || !lastCat) return fb;
+    Object.keys(o).forEach(function (g) {
+      var ids = [].concat(o[g]);
+      ids.forEach(function (id) { var n = choiceName(g, id, null); if (n) parts.push(n); });
+    });
+    return parts.length ? parts.join(', ') : fb;
+  }
   // A guide (catalog item with a 'guide' page) is a single download: never more than one in the cart.
   function isGuide(id) { var it = byId[id]; return !!(it && (it.guide || it.unlock)); }
 
@@ -81,7 +115,7 @@
     var lines = cart(), n = { item: line.item, qty: line.qty || 1, options: line.options || {}, note: line.note || '' };
     if (isGuide(n.item)) {
       n.qty = 1;
-      for (var g = 0; g < lines.length; g++) if (lines[g].item === n.item) { lines[g].qty = 1; saveCart(lines); toast('Dieser Guide ist schon in deinem Warenkorb.'); return lines; }
+      for (var g = 0; g < lines.length; g++) if (lines[g].item === n.item) { lines[g].qty = 1; saveCart(lines); toast(t({ de: 'Dieser Guide ist schon in deinem Warenkorb.', en: 'This guide is already in your cart.', fr: 'Ce guide est déjà dans votre panier.' })); return lines; }
     }
     for (var i = 0; i < lines.length; i++) if (sameLine(lines[i], n)) { lines[i].qty += n.qty; return saveCart(lines); }
     lines.push(n);
@@ -141,7 +175,14 @@
   }
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  function url(path) { return new URL(path, ROOT).href; }
+  // Pages are language copies: /en/pages/x.html, /fr/pages/x.html, German at the root. url() keeps the visitor in
+  // their language for page links ('', '*.html'); files (css, js, json, api) always come from the root.
+  function url(path) {
+    path = path || '';
+    var m = path.match(/^([^?#]*)(.*)$/), file = m[1], rest = m[2];
+    var page = file === '' || /\.html$/.test(file) || /\/$/.test(file);
+    return new URL((page && LANG !== 'de' ? LANG + '/' : '') + file + rest, ROOT).href;
+  }
   function param(name) { return new URLSearchParams(location.search).get(name); }
   function download(filename, text) {
     var a = document.createElement('a');
@@ -157,7 +198,12 @@
     cart: cart, saveCart: saveCart, addToCart: addToCart, cartCount: cartCount,
     orders: orders, addOrder: addOrder, owns: owns, owned: owned,
     openCart: function () { window.dispatchEvent(new Event('shop:cart-open')); },
-    TEST_LABEL: 'Demo-Shop: nur Testzahlungen, es bewegt sich kein echtes Geld.'
+    LANG: LANG, t: t, tx: tx, itemName: itemName, choiceName: choiceName, groupName: groupName, couponName: couponName, lineSummary: lineSummary,
+    TEST_LABEL: t({
+      de: 'Demo-Shop: nur Testzahlungen, es bewegt sich kein echtes Geld.',
+      en: 'Demo shop: test payments only. No real money moves.',
+      fr: 'Boutique de démonstration : paiements de test uniquement, aucun argent réel n’est débité.'
+    })
   };
   document.documentElement.classList.add('has-shop');
 })();
