@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Papa Travel: Jetzt zahlen, später nach Ghana (Demo)</title>
+<meta name="description" content="Fiktive Demo-Agentur für Deutsche, die nach Ghana reisen: Pakete, Services, Reiseguthaben zum Vorauszahlen und Ratgeber. Demo: nur Testzahlungen, kein echtes Geld.">
+<style>@view-transition { navigation: auto; }</style>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/shop/core.css">
+<link rel="stylesheet" href="css/shop/cart.css">
+<style>
+.h-hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:6rem var(--gutter) 4rem;background:radial-gradient(48rem 24rem at 95% 8%,color-mix(in srgb,var(--sun) 55%,transparent),transparent 70%),radial-gradient(40rem 22rem at 0% 100%,color-mix(in srgb,var(--ocean) 28%,transparent),transparent 70%),var(--bg)}
+.h-hero h1{font-family:var(--font-display);font-size:min(var(--fs-h1),11.2vw);overflow-wrap:break-word;line-height:var(--lh-tight);letter-spacing:var(--track-display);margin:0 0 1.5rem;max-width:14ch}
+.h-hero .lead{font-size:var(--fs-lg);max-width:56ch;margin:0 0 2rem}
+.kin{background:linear-gradient(90deg,var(--accent),#e3560a,#b57a00,var(--accent));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:h-sweep 7s linear infinite}
+@keyframes h-sweep{to{background-position:-200% 0}}
+.h-tag{display:inline-block;align-self:flex-start;padding:.3rem .9rem;border:var(--border);border-radius:var(--radius-pill);background:var(--sun);color:var(--text);font-weight:800;font-size:.85rem;margin-bottom:1.2rem;box-shadow:var(--shadow-sm)}
+.h-btn{display:inline-flex;align-items:center;min-height:48px;padding:.75rem 1.6rem;border:var(--border);border-radius:var(--radius-pill);background:var(--accent);color:var(--on-accent);font:inherit;font-weight:800;text-decoration:none;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.h-btn:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow)}
+.h-btn--ghost{background:var(--surface);color:var(--text);margin-left:.75rem}
+.h-big{font-family:var(--font-display);font-size:var(--fs-h2);line-height:var(--lh-tight);letter-spacing:var(--track-h2);margin:0 0 1.5rem;max-width:20ch}
+.h-marq{overflow:hidden;white-space:nowrap}.h-marq span{display:inline-block;font-family:var(--font-display);font-size:var(--fs-giant);font-weight:800;letter-spacing:var(--track-display);padding-right:2rem;background:var(--gradient-text-dark);-webkit-background-clip:text;background-clip:text;color:transparent}
+.h-state{font-family:var(--font-display);font-size:clamp(1.8rem,4.4vw,3.4rem);line-height:var(--lh-snug);max-width:28ch;margin:0}
+.h-note{font-size:.9rem;color:var(--text-muted);max-width:65ch}
+.band--dark .h-note{color:var(--on-dark-muted)}
+.h-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1.5rem;margin:0;padding:0;list-style:none}
+.h-card{display:flex;flex-direction:column;gap:.5rem;padding:1.5rem;border:var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);box-shadow:var(--shadow);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.h-card:hover{transform:translate(-3px,-3px);box-shadow:var(--shadow-lg)}
+.h-card:nth-child(4n+1){background:var(--surface-2)}
+.h-card h3{margin:0;font-family:var(--font-display);font-size:1.4rem}.h-card p{margin:0}
+.h-price{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-top:auto}.h-price small{font-family:var(--font-sans);font-size:.9rem;font-weight:500;color:var(--text-muted)}
+.h-card a.more{font-weight:800}
+.h-steps{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:start}
+.h-steps [data-step-word]{position:sticky;top:20vh;font-family:var(--font-display);font-size:min(var(--fs-giant),10.5vw);overflow-wrap:normal;font-weight:800;letter-spacing:var(--track-display);line-height:1;background:var(--gradient-text-dark);-webkit-background-clip:text;background-clip:text;color:transparent}
+.h-steps .step{min-height:60vh;display:flex;align-items:center;font-family:var(--font-display);font-size:var(--fs-step);line-height:var(--lh-snug);max-width:22ch}
+@media(max-width:64rem){.h-steps{grid-template-columns:minmax(0,1fr);gap:1.5rem}.h-steps [data-step-word]{font-size:min(var(--fs-giant),13vw);position:static}.h-steps .step{min-height:auto;padding-block:1.5rem}.h-btn--ghost{margin:.75rem 0 0}}
+.h-why{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:1.5rem;margin:0;padding:0;list-style:none}
+.h-why li{padding:1.5rem;border:2px solid var(--on-dark);border-radius:var(--radius);background:var(--dark-2);color:var(--on-dark);box-shadow:5px 5px 0 var(--sun)}
+.h-why h3{margin:0 0 .5rem;font-family:var(--font-display);font-size:1.3rem}.h-why p{margin:0}
+.h-nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:2rem}
+.h-nums b{display:block;font-family:var(--font-display);font-size:clamp(3rem,8vw,6rem);letter-spacing:var(--track-display);line-height:1}
+.h-tool{background:var(--surface);color:var(--text);border:var(--border);border-radius:var(--radius-lg);padding:clamp(1.25rem,3vw,2.2rem);box-shadow:var(--shadow)}
+.h-tool fieldset{border:0;padding:0;margin:0 0 1.2rem}.h-tool legend{font-weight:800;margin-bottom:.5rem}
+.h-tool label{display:flex;gap:.6rem;align-items:center;min-height:44px;cursor:pointer}
+.h-tool input[type=radio]{width:1.2rem;height:1.2rem;accent-color:var(--accent)}
+.h-tool input[type=range]{width:100%;accent-color:var(--accent);min-height:44px}
+.h-tool select{width:100%;min-height:44px;padding:.5rem .8rem;border:var(--border);border-radius:.7rem;font:inherit;background:#fff;color:#111}
+.h-out{margin-top:1.2rem;font-weight:600}.h-out ul{margin:.6rem 0 0;padding-left:1.2rem;font-weight:400}.h-out li{margin:.3rem 0}
+.h-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:2rem;align-items:start}
+.h-ticket{position:relative;border:var(--border);border-radius:var(--radius-lg);background:linear-gradient(135deg,var(--sun),#ff9a3c);color:#16130f;padding:clamp(1.5rem,3vw,2.5rem);box-shadow:var(--shadow);margin-bottom:1.2rem}
+.h-ticket small{display:block;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
+.h-ticket b{display:block;font-family:var(--font-display);font-size:clamp(2.8rem,8vw,5rem);letter-spacing:var(--track-display);line-height:1;margin:.3rem 0}
+.h-ticket span{font-weight:600}
+@media(prefers-reduced-motion:reduce){.kin{animation:none}}
+</style>
+<script src="js/shop/core.js" defer></script>
+<script src="js/shop/cart.js" defer></script>
+<script src="js/nav.js" defer></script>
+<script src="js/motion.js" defer></script>
+<script src="js/app.js" defer></script>
+</head>
+<body>
+<main id="main">
+
+<section class="h-hero" id="top">
+  <span class="h-tag">Fiktive Demo-Agentur: nur Testzahlungen, kein echtes Geld</span>
+  <h1 data-words>Jetzt zahlen. <span class="kin">Später Ghana.</span></h1>
+  <p class="lead" data-reveal>Papa Travel verkauft Reisepakete, Services und Reiseguthaben, das du heute kaufst und später für deine Ghana-Reise einlöst. Auf Deutsch, mit festen Preisen und mit Quellen in den Ratgebern.</p>
+  <p data-reveal><a class="h-btn" href="pages/gift-cards.html">Reiseguthaben kaufen</a><a class="h-btn h-btn--ghost" href="pages/services.html#packages">Pakete ansehen</a></p>
+</section>
+
+<section class="band band--dark" aria-label="Was dich erwartet">
+  <div class="h-marq" data-marquee aria-hidden="true"><span>Ghana · Pakete · Reiseguthaben · Transfer · Ratgeber · Ghana · Pakete · Reiseguthaben · Transfer · Ratgeber · </span></div>
+</section>
+
+<section class="band" id="hilfe" aria-labelledby="h-h">
+  <h2 class="h-big" id="h-h" data-words>Wobei wir dir helfen</h2>
+  <ul class="h-cards">
+    <li class="h-card" data-reveal><h3>Pakete</h3><p>Drei fertig geplante Ghana-Reisen mit Unterkunft, Abholung und Reiseplan in einem Preis.</p><a class="more" href="pages/services.html#packages">Zu den Paketen</a></li>
+    <li class="h-card" data-reveal><h3>Reiseguthaben</h3><p>Heute bezahlen, später einlösen: ein Code mit Guthaben, der Pakete und Services abdeckt.</p><a class="more" href="pages/gift-cards.html">Guthaben ansehen</a></li>
+    <li class="h-card" data-reveal><h3>Services</h3><p>Abholung in Accra, Reiseplanung und Unterlagen-Check, einzeln buchbar.</p><a class="more" href="pages/services.html#services">Zu den Services</a></li>
+    <li class="h-card" data-reveal><h3>Ratgeber</h3><p>Einreise, Anreise und Reisezeit, mit Quelle und Stand-Datum.</p><a class="more" href="#guides">Zu den Ratgebern</a></li>
+  </ul>
+</section>
+
+<section class="band band--dark">
+  <p class="h-state" data-fill>Zwischen Zahlung und Reise können Monate liegen. Darum schreiben wir dazu, dass sich Regeln ändern, und wo du sie offiziell nachlesen kannst.</p>
+</section>
+
+<section class="band" id="angebote" aria-labelledby="a-h">
+  <h2 class="h-big" id="a-h" data-words>Pakete und Services</h2>
+  <ul class="h-cards" id="service-cards" aria-live="polite">
+    <li class="h-card"><h3>Unsere Angebote</h3><p>Alle Pakete, Services und Ratgeber mit Preisen findest du auf der Angebotsseite.</p><a class="more" href="pages/services.html">Zu den Angeboten</a></li>
+  </ul>
+  <p class="h-note" style="margin-top:1.5rem" data-reveal>Papa Travel, die Pakete und die Preise sind erfunden (Demo). Preise in Euro. Demo-Shop: nur Testzahlungen, es bewegt sich kein echtes Geld.</p>
+  <p data-reveal><a class="h-btn" href="pages/services.html">Alle Angebote ansehen</a></p>
+</section>
+
+<section class="band band--dark" id="ablauf">
+  <div class="h-steps" data-sticky-steps>
+    <div data-step-word aria-hidden="true">Kaufen</div>
+    <div>
+      <div class="step" data-step="Kaufen">Reiseguthaben in deiner Höhe kaufen, mit einer Testzahlung.</div>
+      <div class="step" data-step="Code">Du bekommst einen Code mit Guthaben. Er gehört dir.</div>
+      <div class="step" data-step="Planen">Später ein Paket oder einen Service wählen und den Code an der Kasse eingeben.</div>
+      <div class="step" data-step="Reisen">Ein Rest bleibt auf dem Code. Unterlagen vorher offiziell prüfen, dann los.</div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="helfer" aria-labelledby="t-h">
+  <h2 class="h-big" id="t-h" data-words>Was deckt mein Guthaben ab?</h2>
+  <div class="h-two">
+    <form class="h-tool" id="credit" novalidate data-reveal aria-labelledby="c-h">
+      <h3 id="c-h" style="margin-top:0;font-family:var(--font-display)">Guthaben-Rechner</h3>
+      <div class="h-ticket"><small>Reiseguthaben, Demo</small><b id="c-amount">250 €</b><span id="c-sub"></span></div>
+      <label for="c-range" style="font-weight:800;display:block">Betrag wählen</label>
+      <input type="range" id="c-range" name="amt" min="50" max="500" step="10" value="250">
+      <p class="h-note" id="c-limits"></p>
+      <div class="h-out" id="c-out" role="status" aria-live="polite"></div>
+      <p><a class="h-btn" href="pages/gift-cards.html">Guthaben kaufen</a></p>
+    </form>
+    <form class="h-tool" id="pkg" novalidate data-reveal aria-labelledby="p-h">
+      <h3 id="p-h" style="margin-top:0;font-family:var(--font-display)">Welches Paket passt?</h3>
+      <fieldset><legend>Mit wem reist du?</legend>
+        <label><input type="radio" name="who" value="solo" checked> Allein, ich will alles geregelt haben</label>
+        <label><input type="radio" name="who" value="two"> Zu zweit oder mit Freunden, wir planen gemeinsam</label>
+      </fieldset>
+      <fieldset><legend>Wie reist du am liebsten?</legend>
+        <label><input type="radio" name="how" value="base" checked> Ankommen und von einem Ort aus loslegen</label>
+        <label><input type="radio" name="how" value="tour"> Mehrere Stationen, eine Rundreise</label>
+      </fieldset>
+      <button class="h-btn" type="submit">Vorschlag zeigen</button>
+      <div class="h-out" id="pkg-out" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+  <p class="h-note" style="margin-top:1.5rem">Ein Richtwert aus den Preisen der Angebotsliste, ohne Optionen wie Zimmerart. Der verbindliche Preis steht im Warenkorb. Prepaid sichert keine Einreise: Visum, Impfungen und Gesundheitserklärung bleiben Sache der Reisenden. Regeln bitte vor der Reise erneut prüfen.</p>
+</section>
+
+<section class="band band--dark" id="vertrauen" aria-labelledby="v-h">
+  <h2 class="h-big" id="v-h" data-words>Warum Papa Travel</h2>
+  <ul class="h-why">
+    <li data-reveal><h3>Mit Quellen</h3><p>Aussagen in den Ratgebern nennen ihre Quelle und das Stand-Datum.</p></li>
+    <li data-reveal><h3>Klare Preise</h3><p>Der Preis, den du siehst, ist der Preis an der Kasse. Er kommt aus unserer Angebotsliste.</p></li>
+    <li data-reveal><h3>Ehrlich über Grenzen</h3><p>Allgemeine Informationen, keine Rechts- oder Einreiseberatung. Wo etwas unsicher ist, sagen wir es.</p></li>
+    <li data-reveal><h3>Sofort bereit</h3><p>Nach der Testzahlung ist deine Bestellung gleich unter Meine Käufe da.</p></li>
+  </ul>
+  <div class="h-nums" style="margin-top:4rem">
+    <div data-reveal><b data-count="3">3</b>Pakete für den Start</div>
+    <div data-reveal><b data-count="3">3</b>Services einzeln buchbar</div>
+    <div data-reveal><b data-count="3">3</b>Ratgeber mit Quellen</div>
+  </div>
+</section>
+
+<section class="band" id="guides" aria-labelledby="g-h">
+  <h2 class="h-big" id="g-h" data-words>Der Weg in die Ratgeber</h2>
+  <p class="prose" data-reveal>Drei Ratgeber führen dich durch die Vorbereitung: Einreise und Visum, Anreise und Ankunft, Reisezeit und Gesundheit. Du kaufst sie auf der Angebotsseite und liest sie danach unter Meine Käufe.</p>
+  <ul class="h-cards" id="guide-cards"></ul>
+  <p style="margin-top:1.5rem" data-reveal><a class="h-btn" href="pages/account.html">Meine Käufe</a><a class="h-btn h-btn--ghost" href="pages/services.html#guides">Ratgeber kaufen</a></p>
+  <p class="guide-note" style="margin-top:2.5rem" data-reveal>Allgemeine Informationen, keine Rechts- oder Einreiseberatung. Regeln bitte vor der Reise bei den offiziellen Stellen prüfen. Papa Travel ist eine erfundene Demo-Agentur.</p>
+</section>
+
+</main>
+</body>
+</html>
