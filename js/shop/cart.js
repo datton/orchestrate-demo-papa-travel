@@ -14,8 +14,8 @@
     drawer.id = 'cart-drawer';
     drawer.setAttribute('role', 'dialog'); drawer.setAttribute('aria-modal', 'true'); drawer.setAttribute('aria-labelledby', 'cart-title');
     drawer.setAttribute('aria-hidden', 'true'); drawer.hidden = true;
-    drawer.innerHTML = '<header class="cart-head"><h2 id="cart-title">Dein Warenkorb</h2>' +
-      '<button type="button" class="cart-close" aria-label="Warenkorb schließen">&times;</button></header>' +
+    drawer.innerHTML = '<header class="cart-head"><h2 id="cart-title">' + S.t({de: 'Dein Warenkorb', en: 'Your cart', fr: 'Votre panier'}) + '</h2>' +
+      '<button type="button" class="cart-close" aria-label="' + S.t({de: 'Warenkorb schließen', en: 'Close cart', fr: 'Fermer le panier'}) + '">&times;</button></header>' +
       '<div class="cart-body" aria-live="polite"></div><footer class="cart-foot"></footer>';
     document.body.appendChild(backdrop); document.body.appendChild(drawer);
     body = drawer.querySelector('.cart-body'); foot = drawer.querySelector('.cart-foot');
@@ -40,7 +40,7 @@
     btn.type = 'button';
     btn.setAttribute('aria-haspopup', 'dialog'); btn.setAttribute('aria-controls', 'cart-drawer');
     btn.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L19 8H6.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.4" fill="currentColor"/><circle cx="17" cy="19" r="1.4" fill="currentColor"/></svg>' +
-      '<span class="cart-button-label">Warenkorb</span><span class="cart-count" aria-hidden="true">0</span>';
+      '<span class="cart-button-label">' + S.t({de: 'Warenkorb', en: 'Cart', fr: 'Panier'}) + '</span><span class="cart-count" aria-hidden="true">0</span>';
     countEl = btn.querySelector('.cart-count');
     btn.addEventListener('click', open);
     place();
@@ -84,7 +84,7 @@
   function updateCount() {
     var n = S.cartCount();
     if (countEl) { countEl.textContent = n > 99 ? '99+' : n; countEl.hidden = n === 0; }
-    if (btn) btn.setAttribute('aria-label', 'Warenkorb, ' + n + ' Artikel');
+    if (btn) btn.setAttribute('aria-label', S.t({de: 'Warenkorb, ' + n + ' Artikel', en: 'Cart, ' + n + (n === 1 ? ' item' : ' items'), fr: 'Panier, ' + n + (n === 1 ? ' article' : ' articles')}));
   }
 
   // A guide is one download that unlocks under "Meine Käufe": never more than one copy in the cart.
@@ -109,8 +109,8 @@
     var lines = S.cart();
     if (!lines.length) {
       quote = null;
-      body.innerHTML = '<div class="cart-empty"><p class="cart-empty-title">Dein Warenkorb ist leer</p><p>Such dir ein Reisepaket, ein Guthaben oder einen Ratgeber aus, er wartet hier auf dich.</p>' +
-        '<a class="shop-btn" href="' + S.esc(S.url('pages/services.html')) + '">Angebote ansehen</a></div>';
+      body.innerHTML = '<div class="cart-empty"><p class="cart-empty-title">' + S.t({de: 'Dein Warenkorb ist leer', en: 'Your cart is empty', fr: 'Votre panier est vide'}) + '</p><p>' + S.t({de: 'Such dir ein Reisepaket, ein Guthaben oder einen Ratgeber aus, er wartet hier auf dich.', en: 'Pick a travel package, a travel credit or a guide and it will wait for you here.', fr: 'Choisissez un forfait, un crédit voyage ou un guide : il vous attendra ici.'}) + '</p>' +
+        '<a class="shop-btn" href="' + S.esc(S.url('pages/services.html')) + '">' + S.t({de: 'Angebote ansehen', en: 'Browse offers', fr: 'Voir les offres'}) + '</a></div>';
       foot.innerHTML = '<p class="shop-testlabel">' + S.esc(S.TEST_LABEL) + '</p>';
       return;
     }
@@ -129,18 +129,18 @@
     var html = '<ul class="cart-lines">';
     lines.forEach(function (l, i) {
       var ql = q && q.lines && q.lines[i];
-      var name = ql ? ql.name : l.item;
-      var meta = ql && ql.summary ? ql.summary : '';
+      var name = S.itemName(l.item, ql ? ql.name : l.item);
+      var meta = S.lineSummary(l, ql && ql.summary ? ql.summary : '');
       var price = ql ? S.money(ql.total, q.currency) : (loading ? '…' : '');
       html += '<li class="cart-line" data-i="' + i + '"><div class="cart-line-main"><p class="cart-line-name">' + S.esc(name) + '</p>' +
         (meta ? '<p class="cart-line-meta">' + S.esc(meta) + '</p>' : '') +
-        (l.note ? '<p class="cart-line-meta">Notiz: ' + S.esc(l.note) + '</p>' : '') + '</div>' +
+        (l.note ? '<p class="cart-line-meta">' + S.t({de: 'Notiz', en: 'Note', fr: 'Remarque'}) + ': ' + S.esc(l.note) + '</p>' : '') + '</div>' +
         '<p class="cart-line-price">' + price + '</p>' +
-        (isGuide(l) ? '<p class="cart-single">Einzelner Download</p>' :
-        '<div class="shop-stepper cart-stepper" role="group" aria-label="Menge von ' + S.esc(name) + '">' +
-        '<button type="button" data-act="dec" aria-label="Eine weniger">&minus;</button><output>' + l.qty + '</output>' +
-        '<button type="button" data-act="inc" aria-label="Eine mehr">+</button></div>') +
-        '<button type="button" class="cart-remove" data-act="rm" aria-label="Entfernen: ' + S.esc(name) + '">Entfernen</button></li>';
+        (isGuide(l) ? '<p class="cart-single">' + S.t({de: 'Einzelner Download', en: 'Single download', fr: 'Téléchargement unique'}) + '</p>' :
+        '<div class="shop-stepper cart-stepper" role="group" aria-label="' + S.t({de: 'Menge von ', en: 'Quantity of ', fr: 'Quantité de '}) + S.esc(name) + '">' +
+        '<button type="button" data-act="dec" aria-label="' + S.t({de: 'Eine weniger', en: 'One fewer', fr: 'Une de moins'}) + '">&minus;</button><output>' + l.qty + '</output>' +
+        '<button type="button" data-act="inc" aria-label="' + S.t({de: 'Eine mehr', en: 'One more', fr: 'Une de plus'}) + '">+</button></div>') +
+        '<button type="button" class="cart-remove" data-act="rm" aria-label="' + S.t({de: 'Entfernen: ', en: 'Remove: ', fr: 'Retirer : '}) + S.esc(name) + '">' + S.t({de: 'Entfernen', en: 'Remove', fr: 'Retirer'}) + '</button></li>';
     });
     html += '</ul>';
     if (error) html += '<p class="cart-error" role="alert">' + S.esc(error) + '</p>';
@@ -148,11 +148,11 @@
 
     var f = '';
     if (q) {
-      f += '<dl class="cart-sums"><div><dt>Zwischensumme</dt><dd>' + S.money(q.subtotal, q.currency) + '</dd></div>';
-      if (q.discount) f += '<div class="cart-discount"><dt>' + S.esc(q.discount.name || q.discount.code) + '</dt><dd>&minus;' + S.money(q.discount.amount, q.currency) + '</dd></div>';
-      f += '<div class="cart-total"><dt>Gesamt</dt><dd>' + S.money(q.total, q.currency) + '</dd></div></dl>';
-    } else if (loading) f += '<p class="cart-loading">Preise werden geprüft …</p>';
-    f += '<a class="shop-btn cart-checkout" href="' + S.esc(S.url('pages/checkout.html')) + '"' + (q ? '' : ' aria-disabled="' + (loading ? 'true' : 'false') + '"') + '>Zur Kasse</a>' +
+      f += '<dl class="cart-sums"><div><dt>' + S.t({de: 'Zwischensumme', en: 'Subtotal', fr: 'Sous-total'}) + '</dt><dd>' + S.money(q.subtotal, q.currency) + '</dd></div>';
+      if (q.discount) f += '<div class="cart-discount"><dt>' + S.esc(S.couponName(q.discount.code, q.discount.name || q.discount.code)) + '</dt><dd>&minus;' + S.money(q.discount.amount, q.currency) + '</dd></div>';
+      f += '<div class="cart-total"><dt>' + S.t({de: 'Gesamt', en: 'Total', fr: 'Total'}) + '</dt><dd>' + S.money(q.total, q.currency) + '</dd></div></dl>';
+    } else if (loading) f += '<p class="cart-loading">' + S.t({de: 'Preise werden geprüft …', en: 'Checking prices…', fr: 'Vérification des prix…'}) + '</p>';
+    f += '<a class="shop-btn cart-checkout" href="' + S.esc(S.url('pages/checkout.html')) + '"' + (q ? '' : ' aria-disabled="' + (loading ? 'true' : 'false') + '"') + '>' + S.t({de: 'Zur Kasse', en: 'Check out', fr: 'Passer à la caisse'}) + '</a>' +
       '<p class="shop-testlabel">' + S.esc(S.TEST_LABEL) + '</p>';
     foot.innerHTML = f;
   }
