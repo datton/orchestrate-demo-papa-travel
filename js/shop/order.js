@@ -17,6 +17,7 @@
     try { return new Date(iso).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }); } catch (e) { return iso || ''; }
   }
   var STEP = { paid: 'Zahlung eingegangen', making: 'Wird vorbereitet', ready: 'Bereit', collected: 'Zugestellt' };
+  function payLabel(c) { return /^gift ?card/i.test(c) ? 'Reiseguthaben (Demo)' : c + ' (Testkarte)'; }
   function paid(o) { return o && o.status && o.status !== 'pending' && o.status !== 'cancelled' && o.status !== 'refunded'; }
   function brand() { return (cat && cat.brand && cat.brand.name) || 'Papa Travel'; }
 
@@ -28,7 +29,7 @@
     if (o.discount) t.push('Rabatt ' + o.discount.code + ': -' + Shop.money(o.discount.amount, o.currency));
     if (o.giftCard) t.push('Reiseguthaben: -' + Shop.money(o.giftCard.applied, o.currency));
     t.push('Bezahlt: ' + Shop.money(o.total, o.currency));
-    if (o.payment && o.payment.card) t.push('Zahlung: ' + o.payment.card + ' (Testkarte)');
+    if (o.payment && o.payment.card) t.push('Zahlung: ' + payLabel(o.payment.card));
     t.push('', 'Dies ist eine Demo. Es wurde kein echtes Geld bewegt.');
     return t.join('\n');
   }
@@ -55,7 +56,7 @@
         (o.discount ? '<div class="ord__sub"><span>' + esc(o.discount.name || o.discount.code) + '</span><span>−' + Shop.money(o.discount.amount, o.currency) + '</span></div>' : '') +
         (o.giftCard ? '<div class="ord__sub"><span>Reiseguthaben</span><span>−' + Shop.money(o.giftCard.applied, o.currency) + '</span></div>' : '') +
         '<div class="ord__sum"><span>Bezahlt</span><span>' + Shop.money(o.total, o.currency) + '</span></div>' +
-        (o.giftCard && o.giftCard.balanceAfter != null ? '<p class="ord__muted">Auf deinem Reiseguthaben bleiben ' + Shop.money(o.giftCard.balanceAfter, o.currency) + ' (Demo).</p>' : '') + (o.payment && o.payment.card ? '<p class="ord__muted">Bezahlt mit ' + esc(o.payment.card) + ' (Testkarte)</p>' : '') + '</section>';
+        (o.giftCard && o.giftCard.balanceAfter != null ? '<p class="ord__muted">Auf deinem Reiseguthaben bleiben ' + Shop.money(o.giftCard.balanceAfter, o.currency) + ' (Demo).</p>' : '') + (o.payment && o.payment.card ? '<p class="ord__muted">Bezahlt mit ' + esc(payLabel(o.payment.card)) + '</p>' : '') + '</section>';
 
       h += '<section class="ord__card" aria-labelledby="ord-n"><h2 id="ord-n">Wie es weitergeht</h2>' + (steps ? '<ol class="ord__steps">' + steps + '</ol>' : '') +
         (o.lines || []).map(function (l) {
