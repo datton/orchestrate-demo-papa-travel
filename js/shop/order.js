@@ -32,7 +32,11 @@
   function paid(o) { return o && o.status && o.status !== 'pending' && o.status !== 'cancelled' && o.status !== 'refunded'; }
   function brand() { return (cat && cat.brand && cat.brand.name) || 'Ghana Vorab'; }
   function lname(l) { return Shop.itemName(l.item, l.name); }
-  function lsum(l) { return Shop.lineSummary(l, l.summary); }
+  function lsum(l) {
+    // The service answers with options as a list and a German summary: translate that text; a {group: id} map goes through the catalog.
+    var plain = l.options && !Array.isArray(l.options) ? Shop.lineSummary(l, null) : null;
+    return plain || Shop.localizeSummary(l.summary);
+  }
   function money(c, o) { return Shop.money(c, o.currency); }
   function eyebrow() { return '<p class="ord__eyebrow">' + T({ de: 'Bestätigung', en: 'Confirmation', fr: 'Confirmation' }) + ' <span class="ord__badge">Demo</span></p>'; }
 
