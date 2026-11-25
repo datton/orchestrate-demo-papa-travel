@@ -1,0 +1,297 @@
+{
+ "brand": {
+  "name": "Papa Travel",
+  "short": "Papa Travel",
+  "kind": "services",
+  "tagline": "Fiktive Demo-Agentur: Ghana für Deutsche, klar geplant"
+ },
+ "currency": "EUR",
+ "timezone": "Africa/Accra",
+ "demo": true,
+ "stores": [],
+ "categories": [
+  {
+   "id": "packages",
+   "name": "Pakete",
+   "blurb": "Fertig geplant: Unterkunft, Abholung und Reiseplan in einem Preis"
+  },
+  {
+   "id": "services",
+   "name": "Services",
+   "blurb": "Einzeln buchbar: Transfer, Reiseplanung und Unterlagen-Check"
+  },
+  {
+   "id": "guides",
+   "name": "Ratgeber",
+   "blurb": "Zum Nachlesen, freigeschaltet unter Meine Käufe"
+  }
+ ],
+ "options": {
+  "zimmer": {
+   "name": "Zimmer",
+   "type": "one",
+   "required": true,
+   "choices": [
+    {
+     "id": "doppel",
+     "name": "Doppelzimmer, geteilt",
+     "price": 0,
+     "default": true
+    },
+    {
+     "id": "einzel",
+     "name": "Einzelzimmer",
+     "price": 9000
+    }
+   ]
+  },
+  "gaeste_transfer": {
+   "name": "Gäste",
+   "type": "one",
+   "required": true,
+   "choices": [
+    {
+     "id": "1-2",
+     "name": "1 bis 2 Personen",
+     "price": 0,
+     "default": true
+    },
+    {
+     "id": "3-4",
+     "name": "3 bis 4 Personen",
+     "price": 1500
+    }
+   ]
+  },
+  "richtung": {
+   "name": "Fahrt",
+   "type": "one",
+   "required": true,
+   "choices": [
+    {
+     "id": "einfach",
+     "name": "Einfache Fahrt",
+     "price": 0,
+     "default": true
+    },
+    {
+     "id": "hin-zurueck",
+     "name": "Hin und zurück",
+     "price": 4000
+    }
+   ]
+  },
+  "tempo": {
+   "name": "Bearbeitung",
+   "type": "one",
+   "required": true,
+   "choices": [
+    {
+     "id": "standard",
+     "name": "Standard: Antwort in 3 Werktagen",
+     "price": 0,
+     "default": true
+    },
+    {
+     "id": "express",
+     "name": "Express: Antwort in 1 Werktag",
+     "price": 1500
+    }
+   ]
+  }
+ },
+ "items": [
+  {
+   "id": "ghana-start",
+   "name": "Ghana Start",
+   "category": "packages",
+   "price": 31000,
+   "options": [
+    "zimmer"
+   ],
+   "desc": "Sechs Nächte in Accra mit Abholung am Flughafen und einem schriftlichen Reiseplan. Der kompakte Einstieg. Preis pro Person. Fiktives Demo-Angebot.",
+   "includes": [
+    "6 Nächte Unterkunft in Accra",
+    "Abholung am Flughafen",
+    "Reiseplan als Text zum Speichern"
+   ],
+   "tags": [],
+   "soldOut": false,
+   "badge": "Einstieg",
+   "perPerson": true
+  },
+  {
+   "id": "ghana-rundreise",
+   "name": "Ghana Rundreise",
+   "category": "packages",
+   "price": 46000,
+   "options": [
+    "zimmer"
+   ],
+   "desc": "Neun Nächte an mehreren Orten, mit Transfers zwischen den Stationen und einem Reiseplan für jede Etappe. Preis pro Person. Fiktives Demo-Angebot.",
+   "includes": [
+    "9 Nächte Unterkunft",
+    "Transfers zwischen den Stationen",
+    "Reiseplan je Etappe",
+    "Vorbereitungs-Checkliste"
+   ],
+   "tags": [
+    "popular"
+   ],
+   "soldOut": false,
+   "perPerson": true,
+   "badge": "Beliebt"
+  },
+  {
+   "id": "ghana-gemeinsam",
+   "name": "Ghana gemeinsam",
+   "category": "packages",
+   "price": 38000,
+   "options": [
+    "zimmer"
+   ],
+   "desc": "Für zwei oder mehr: sieben Nächte, ein gemeinsamer Transfer und ein Reiseplan für die Gruppe. Preis pro Person. Fiktives Demo-Angebot.",
+   "includes": [
+    "7 Nächte Unterkunft",
+    "Gemeinsamer Transfer",
+    "Reiseplan für die Gruppe"
+   ],
+   "tags": [],
+   "soldOut": false,
+   "perPerson": true
+  },
+  {
+   "id": "abholung-accra",
+   "name": "Abholung in Accra",
+   "category": "services",
+   "price": 4500,
+   "options": [
+    "gaeste_transfer",
+    "richtung"
+   ],
+   "desc": "Wir bringen dich vom Flughafen Accra zu deiner Unterkunft. Fiktives Demo-Angebot.",
+   "includes": [
+    "Abholung am Flughafen",
+    "Fahrt zur Unterkunft"
+   ],
+   "tags": [],
+   "soldOut": false
+  },
+  {
+   "id": "reiseplanung",
+   "name": "Reiseplanung",
+   "category": "services",
+   "price": 3900,
+   "options": [
+    "tempo"
+   ],
+   "desc": "Aus deinen Wünschen wird ein Reiseplan als Text zum Speichern. Fiktives Demo-Angebot.",
+   "includes": [
+    "Reiseplan als Text",
+    "Eine Runde Änderungen"
+   ],
+   "tags": [],
+   "soldOut": false
+  },
+  {
+   "id": "unterlagen-check",
+   "name": "Unterlagen-Check",
+   "category": "services",
+   "price": 4500,
+   "options": [
+    "tempo"
+   ],
+   "desc": "Wir gehen mit dir deine Unterlagen durch und verweisen auf die offiziellen Stellen. Kein Ergebnis bei Behörden versprochen. Preis pro Person. Fiktives Demo-Angebot.",
+   "includes": [
+    "Checkliste zu deinen Unterlagen",
+    "Verweise auf offizielle Stellen"
+   ],
+   "tags": [],
+   "soldOut": false,
+   "perPerson": true
+  },
+  {
+   "id": "einreise-visum",
+   "name": "Ratgeber: Einreise und Visum",
+   "category": "guides",
+   "price": 1400,
+   "options": [],
+   "desc": "Was du vor der Einreise nach Ghana klären solltest, mit Verweisen auf die offiziellen Stellen. Wird unter Meine Käufe freigeschaltet.",
+   "includes": [
+    "Überblick zu Einreise und Visum",
+    "Verweise auf offizielle Stellen",
+    "Freigeschaltet unter Meine Käufe"
+   ],
+   "tags": [],
+   "soldOut": false,
+   "guide": "pages/guides/einreise-visum.html"
+  },
+  {
+   "id": "anreise-ankunft",
+   "name": "Ratgeber: Anreise und Ankunft",
+   "category": "guides",
+   "price": 1200,
+   "options": [],
+   "desc": "Wie Anreise und Ankunft in Accra ablaufen können. Wird unter Meine Käufe freigeschaltet.",
+   "includes": [
+    "Überblick zur Anreise",
+    "Hinweise zur Ankunft",
+    "Freigeschaltet unter Meine Käufe"
+   ],
+   "tags": [],
+   "soldOut": false,
+   "guide": "pages/guides/anreise-ankunft.html"
+  },
+  {
+   "id": "reisezeit-gesundheit",
+   "name": "Ratgeber: Reisezeit und Gesundheit",
+   "category": "guides",
+   "price": 1400,
+   "options": [],
+   "desc": "Wann du reisen kannst und woran du bei der Gesundheit denken solltest, mit Verweisen auf offizielle Hinweise. Wird unter Meine Käufe freigeschaltet.",
+   "includes": [
+    "Überblick zur Reisezeit",
+    "Allgemeine Gesundheitshinweise",
+    "Freigeschaltet unter Meine Käufe"
+   ],
+   "tags": [],
+   "soldOut": false,
+   "guide": "pages/guides/reisezeit-gesundheit.html"
+  }
+ ],
+ "coupons": [
+  {
+   "code": "PAPA15",
+   "name": "15 € Rabatt ab 200 €",
+   "type": "amount",
+   "value": 1500,
+   "minSubtotal": 20000
+  }
+ ],
+ "giftCards": {
+  "amounts": [
+   10000,
+   25000,
+   50000
+  ],
+  "min": 5000,
+  "max": 50000,
+  "designs": [
+   {
+    "id": "reiseguthaben",
+    "name": "Reiseguthaben Ghana",
+    "line": "Jetzt zahlen, später reisen"
+   },
+   {
+    "id": "fuer-zwei",
+    "name": "Für zwei",
+    "line": "Ein Guthaben für eure gemeinsame Reise"
+   },
+   {
+    "id": "danke",
+    "name": "Zum Dank",
+    "line": "Ein Stück Ghana zum Dankeschön"
+   }
+  ]
+ }
+}
