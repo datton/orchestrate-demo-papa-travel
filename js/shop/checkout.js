@@ -90,7 +90,9 @@
     $('co-grid').hidden = cart.length === 0;
     if (!cart.length) return Promise.resolve(true);
     $('co-pay').disabled = true;
-    return S.api('quote', body()).then(function (q) {
+    // Wait for the catalog too: item, option and coupon names come from it in the visitor's language.
+    return Promise.all([S.api('quote', body()), S.catalog().catch(function () { return null; })]).then(function (r) {
+      var q = r[0];
       if (seq !== quoteSeq) return true;
       state.quote = q; $('co-error').textContent = ''; state.lastError = ''; $('co-retry').hidden = true;
       render(q); return true;
