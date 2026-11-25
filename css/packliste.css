@@ -12,3 +12,4 @@
 .pk-list label:has(input:focus-visible){outline:3px solid var(--accent-strong);outline-offset:2px}
 .pk-error{padding:1rem;border:2px solid var(--accent);border-radius:var(--radius-sm)}
 @media (prefers-reduced-motion:reduce){.pk-bar span,.pk-list label{transition:none}}
+.band--dark .gd-source{color:var(--on-dark-muted)}
