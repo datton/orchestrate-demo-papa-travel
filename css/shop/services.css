@@ -47,3 +47,6 @@
 
 /* layout.css centres each band child; keep everything on the hero's left edge */
 .svc-hero > *, .svc-list > *, .svc-note > * { margin-inline: 0; }
+
+.svc-from { white-space: nowrap; }
+@media (max-width: 26rem) { .svc-price { font-size: 1.6rem; } }
