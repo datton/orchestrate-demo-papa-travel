@@ -13,7 +13,7 @@
   --text: #eef2ff;            /* 16:1 on --bg */
   --text-muted: #aab6dc;      /* 8.5:1 on --bg */
   --line: #2b376e;            /* hairlines (decor) */
-  --field-line: #8f9cd8;      /* form field and stepper borders: >=3:1 on --bg, --surface and --surface-2 */
+  --field-line: #8f9cd8;      /* form field and stepper borders: 7.4:1 on --bg, 6.7 on --surface, 5.9 on --surface-2 (needs 3:1) */
   --dark: #17106b;            /* electric-indigo band */
   --dark-2: #231a8f;
   --on-dark: #ffffff;         /* 15:1 on --dark */
